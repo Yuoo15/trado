@@ -1,0 +1,347 @@
+.wrapper {
+  min-height: 100vh;
+  padding: 12px;
+  padding-bottom: 120px;
+  background: radial-gradient(circle at 20% 20%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 40%),
+    radial-gradient(circle at 80% 0%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 35%),
+    var(--bg-primary);
+  transition: background 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background: var(--bg-primary);
+  border-radius: 16px;
+  box-shadow: 0 14px 40px var(--shadow);
+  padding: 16px;
+  border: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .wrapper {
+    padding: 20px;
+  }
+  
+  .container {
+    padding: 24px;
+    border-radius: 20px;
+  }
+}
+
+.backLink {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: var(--accent-color);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .backLink {
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+}
+
+.backLink:hover {
+  color: var(--accent-hover);
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: var(--text-secondary);
+}
+
+.sellerHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+  border: 1px solid var(--border-color);
+  transition: background 0.3s ease, border-color 0.3s ease;
+  border-radius: 12px;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+.sellerHeaderTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .sellerHeader {
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    padding: 24px;
+    border-radius: 16px;
+    margin-bottom: 32px;
+  }
+  
+  .sellerHeaderTop {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+.sellerAvatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--gradient-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  font-weight: 700;
+  flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(0, 76, 255, 0.3);
+}
+
+@media (min-width: 768px) {
+  .sellerAvatar {
+    width: 80px;
+    height: 80px;
+    font-size: 32px;
+  }
+}
+
+.sellerInfo {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sellerName {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+  line-height: 1.3;
+}
+
+@media (min-width: 768px) {
+  .sellerName {
+    font-size: 28px;
+    margin: 0 0 8px 0;
+  }
+}
+
+.sellerMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+@media (min-width: 768px) {
+  .sellerMeta {
+    gap: 4px;
+  }
+}
+
+.sellerRole {
+  font-size: 14px;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: 4px 12px;
+  border-radius: 12px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.sellerPhone {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.actionsRow {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+@media (min-width: 768px) {
+  .actionsRow {
+    flex-direction: row;
+    width: auto;
+  }
+}
+
+.contactButton {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 76, 255, 0.3);
+  white-space: nowrap;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .contactButton {
+    width: auto;
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
+
+.banButton {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff4444 0%, #ff6666 100%);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.3);
+  white-space: nowrap;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.banButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(255, 68, 68, 0.4);
+}
+
+.unbanButton {
+  background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%) !important;
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3) !important;
+}
+
+.unbanButton:hover {
+  box-shadow: 0 6px 16px rgba(76, 175, 80, 0.4) !important;
+}
+
+@media (min-width: 768px) {
+  .banButton {
+    width: auto;
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+}
+
+.contactButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 76, 255, 0.4);
+}
+
+.contactButton:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0, 76, 255, 0.3);
+}
+
+.productsSection {
+  margin-top: 32px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 20px 0;
+}
+
+@media (min-width: 768px) {
+  .sectionTitle {
+    font-size: 22px;
+    margin: 0 0 24px 0;
+  }
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-secondary);
+}
+
+.empty p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  padding: 0 4px;
+}
+
+@media (min-width: 768px) {
+  .productsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+}
+
+
+@media (min-width: 1024px) {
+  .productsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+  
+  .sellerHeader {
+    padding: 32px;
+  }
+  
+  .sellerAvatar {
+    width: 100px;
+    height: 100px;
+    font-size: 40px;
+  }
+  
+  .sellerName {
+    font-size: 32px;
+  }
+  
+  .sellerMeta {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .contactButton {
+    padding: 14px 28px;
+    font-size: 17px;
+  }
+}

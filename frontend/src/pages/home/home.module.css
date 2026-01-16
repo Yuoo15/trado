@@ -1,0 +1,116 @@
+.home {
+    padding: 12px 12px 20px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .home {
+        padding: 20px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .home {
+        max-width: 1400px;
+        padding: 32px 40px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .home {
+        max-width: 1600px;
+        padding: 40px 60px;
+    }
+}
+
+.filterIndicator {
+    margin: 16px 0;
+    padding: 0 20px;
+}
+
+.filterBadges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+}
+
+.filterBadge {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    border: 2px solid var(--accent-color);
+    transition: background 0.3s ease, border-color 0.3s ease;
+    border-radius: 24px;
+    font-size: 14px;
+    box-shadow: 0 4px 12px rgba(0, 76, 255, 0.2);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.filterIcon {
+    font-size: 16px;
+}
+
+.filterLabel {
+    color: var(--text-secondary);
+    font-weight: 500;
+}
+
+.filterValue {
+    color: var(--accent-color);
+    font-weight: 700;
+    font-size: 15px;
+}
+
+.filterRemove {
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary);
+    cursor: pointer;
+    font-size: 16px;
+    line-height: 1;
+    padding: 0;
+    width: 18px;
+    height: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    margin-left: 4px;
+}
+
+.filterRemove:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    transition: background 0.3s ease, color 0.3s ease;
+    transform: scale(1.1);
+}
+
+@media (min-width: 1024px) {
+    .filterIndicator {
+        margin: 20px 0;
+        padding: 0 40px;
+    }
+    
+    .filterBadge {
+        padding: 10px 16px;
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,141 @@
+@import 'normalize.css';
+
+:root {
+  --bg-primary: #fff;
+  --bg-secondary: #f8f9ff;
+  --bg-tertiary: #f5f5f5;
+  --text-primary: #111;
+  --text-secondary: #666;
+  --text-tertiary: #999;
+  --border-color: #e8ecf5;
+  --border-light: #e0e0e0;
+  --accent-color: #004cff;
+  --accent-hover: #2d76ff;
+  --shadow: rgba(0, 0, 0, 0.08);
+  --shadow-hover: rgba(0, 0, 0, 0.12);
+  --gradient-primary: linear-gradient(135deg, #004cff 0%, #2d76ff 100%);
+  --bg-gradient-start: #eef3ff;
+  --bg-gradient-end: #ffffff;
+}
+
+.dark {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #2a2a2a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --text-tertiary: #888;
+  --border-color: #3a3a3a;
+  --border-light: #404040;
+  --accent-color: #4d8aff;
+  --accent-hover: #6ba3ff;
+  --shadow: rgba(0, 0, 0, 0.3);
+  --shadow-hover: rgba(0, 0, 0, 0.4);
+  --gradient-primary: linear-gradient(135deg, #4d8aff 0%, #6ba3ff 100%);
+  --bg-gradient-start: #1a1a2e;
+  --bg-gradient-end: #121212;
+  --chat-bg: #0e1621;
+  --chat-my-message-bg: linear-gradient(135deg, #2a4a5c 0%, #1e3a4a 100%);
+  --chat-other-message-bg: #242424;
+  --chat-text-dark: #ffffff;
+}
+
+/* Применяем темную тему к html элементу */
+html.dark {
+  color-scheme: dark;
+}
+
+html.light {
+  color-scheme: light;
+}
+
+.light {
+  --chat-bg: #e5ddd5;
+  --chat-my-message-bg: linear-gradient(135deg, #dcf8c6 0%, #c8e8b0 100%);
+  --chat-other-message-bg: #ffffff;
+  --chat-text-dark: #000000;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-geist-sans), system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Отключение выделения браузера при клике */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+button, a, [role="button"], .card, input, textarea {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  outline: none;
+}
+
+
+/* Разрешаем выделение текста в полях ввода */
+input:not([type="button"]):not([type="submit"]):not([type="reset"]),
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+
+/* Отключение выделения текста при двойном клике */
+::selection {
+  background: rgba(0, 76, 255, 0.2);
+  color: inherit;
+}
+
+::-moz-selection {
+  background: rgba(0, 76, 255, 0.2);
+  color: inherit;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding-bottom: 80px; /* место под нижнее меню */
+}
+
+@media (min-width: 1024px) {
+  .app-shell {
+    padding-bottom: 100px; /* Отступ для нижнего меню на компьютерах */
+  }
+}
+
+/* Скрытие нижнего бара браузера на мобильных */
+html {
+  height: 100%;
+  height: -webkit-fill-available;
+}
+
+body {
+  min-height: 100vh;
+  min-height: -webkit-fill-available;
+  overflow-y: auto;
+  overflow-x: hidden;
+  /* Скрытие нижнего бара при прокрутке */
+  overscroll-behavior-y: contain;
+}
+
+/* Скрытие навигационной панели на iOS Safari */
+@supports (-webkit-touch-callout: none) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Скрытие адресной строки и нижнего бара на Android Chrome */
+@media screen and (display-mode: standalone) {
+  body {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}

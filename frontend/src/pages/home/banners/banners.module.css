@@ -1,0 +1,128 @@
+.swiper {
+  --banner-delay: 7000ms;
+  /* место под пагинацию: bottom(16) + высота(13) + запас */
+  padding-bottom: 42px;
+  margin: 0 auto;
+  margin-top: 0;
+  margin-bottom: 24px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  --pagination-dot: rgb(199, 210, 254); /* светло-синий */
+  --pagination-track: rgba(37, 99, 235, 0.18); /* трек у активной пилюли */
+  --pagination-fill: rgb(37, 99, 235); /* заливка прогресса */
+  --pagination-h: 13px;
+  --pagination-active-w: 56px;
+}
+
+.swiper :global(.swiper-pagination) {
+  bottom: 16px;
+}
+
+.bullet {
+  width: var(--pagination-h);
+  height: var(--pagination-h);
+  opacity: 1;
+  background: var(--pagination-dot);
+  border-radius: 999px;
+  overflow: hidden;
+  transition: width 220ms ease, background 220ms ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.progress {
+  position: absolute;
+  inset: 1px;
+  width: auto;
+  height: auto;
+  background: var(--pagination-fill);
+  border-radius: 999px;
+  transform: scaleX(0);
+  transform-origin: left center;
+}
+
+.swiper :global(.swiper-pagination-bullet).bullet {
+  margin: 0 6px;
+}
+
+.swiper :global(.swiper-pagination-bullet-active).bullet {
+  width: var(--pagination-active-w); /* активная "пилюля" как на скрине */
+  opacity: 1;
+  background: var(--pagination-track);
+}
+
+.swiper :global(.swiper-pagination-bullet-active).bullet .progress {
+  animation: fill var(--banner-delay) linear forwards;
+}
+
+@keyframes fill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@media (min-width: 1024px) {
+  .swiper {
+    --banner-delay: 6000ms;
+    padding-bottom: 52px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-bottom: 32px;
+    max-width: 100%;
+  }
+
+  .swiper :global(.swiper-wrapper) {
+    align-items: center;
+  }
+
+  .swiper :global(.swiper-slide) {
+    height: auto;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .swiper :global(.swiper-pagination) {
+    bottom: 24px;
+  }
+
+  .swiper :global(.swiper-pagination-bullet).bullet {
+    margin: 0 8px;
+  }
+
+  .swiper :global(.swiper-pagination-bullet-active).bullet {
+    --pagination-active-w: 64px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .swiper {
+    --pagination-h: 15px;
+    --pagination-active-w: 72px;
+    max-width: 100%;
+    padding-bottom: 56px;
+    margin-bottom: 40px;
+  }
+
+  .swiper :global(.swiper-pagination) {
+    bottom: 28px;
+  }
+
+  .swiper :global(.swiper-pagination-bullet).bullet {
+    margin: 0 10px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .swiper {
+    max-width: 100%;
+    padding-bottom: 60px;
+  }
+
+  .swiper :global(.swiper-pagination) {
+    bottom: 32px;
+  }
+}

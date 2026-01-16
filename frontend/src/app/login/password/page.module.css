@@ -1,0 +1,231 @@
+:root {
+  --blue: #0d5bff;
+  --blue-dark: #0a4fe0;
+  --bg-soft: #f5f7ff;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  padding: 24px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.animate {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.bgTop {
+  position: absolute;
+  top: -200px;
+  left: -140px;
+  width: 540px;
+  height: 540px;
+  background: radial-gradient(circle at 30% 30%, #0b5bfd, #0a4fe0);
+  border-radius: 50% 55% 50% 60%;
+  opacity: 0.9;
+}
+
+.bgRight {
+  position: absolute;
+  top: 340px;
+  right: -100px;
+  width: 220px;
+  height: 280px;
+  background: radial-gradient(circle at 50% 50%, #0b5bfd, #0a4fe0);
+  border-radius: 60% 40% 50% 50%;
+  opacity: 0.9;
+}
+
+.bgBottom {
+  position: absolute;
+  bottom: -240px;
+  right: -100px;
+  width: 560px;
+  height: 560px;
+  background: radial-gradient(circle at 50% 40%, #f1f4ff, #ffffff);
+  border-radius: 50%;
+  opacity: 0.9;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  overflow: hidden;
+}
+
+.avatarCircle {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  background: #ff7aa2;
+  border: 3px solid #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  display: grid;
+  place-items: center;
+  margin-bottom: 4px;
+  overflow: hidden;
+}
+
+.avatarImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+.avatarText {
+  font-size: 40px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.title {
+  margin: 0;
+  font-size: 34px;
+  font-weight: 700;
+  color: #171717;
+  text-align: center;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: #171717;
+  text-align: center;
+}
+
+.helper {
+  margin: 0;
+  font-size: 16px;
+  color: #2c2c2c;
+  text-align: center;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: center;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 360px;
+}
+
+.input {
+  width: 100%;
+  padding: 16px 48px 16px 16px;
+  border-radius: 14px;
+  border: 2px solid #0b5bfd;
+  background: #f8f5ff;
+  font-size: 16px;
+  color: #171717;
+  outline: none;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.input::placeholder {
+  color: #8a7db3;
+}
+
+.input:focus {
+  border-color: #0b5bfd;
+  box-shadow: 0 0 0 3px rgba(11, 91, 253, 0.15);
+}
+
+.eyeButton {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #6a6a6a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.eyeButton:hover {
+  color: #4a4a4a;
+}
+
+.primaryButton {
+  width: 100%;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: var(--blue);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 8px 24px rgba(13, 91, 255, 0.35);
+  max-width: 360px;
+}
+
+.primaryButton:hover {
+  background: var(--blue-dark);
+  transform: translateY(-1px);
+}
+
+.primaryButton:active {
+  transform: translateY(0);
+}
+
+.error {
+  color: #ff4d4f;
+  font-size: 14px;
+  text-align: center;
+  max-width: 360px;
+}
+
+.cancel {
+  margin-top: 8px;
+  text-align: center;
+  color: #555;
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cancel:hover {
+  color: #111;
+}
+
+@media (max-width: 480px) {
+  .title {
+    font-size: 30px;
+  }
+  .subtitle {
+    font-size: 16px;
+  }
+  .dots {
+    max-width: 280px;
+  }
+}

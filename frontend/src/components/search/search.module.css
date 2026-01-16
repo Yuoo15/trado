@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+.searchForm {
+    position: relative;
+    display: inline-block;
+    width: 248px;
+    max-width: 248px;
+}
+
+.searchWrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 100%;
+}
+
+.searchInput {
+    height: 40px;
+    width: 100%;
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+    border-radius: 18px;
+    border-style: none;
+    font-family: 'Raleway', sans-serif;
+    padding: 12px 36px 12px 12px;
+    box-sizing: border-box;
+    display: block;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.searchInput::placeholder {
+    color: var(--text-secondary);
+}
+
+.searchIcon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 16px !important;
+    height: 16px !important;
+    min-width: 16px !important;
+    max-width: 16px !important;
+    min-height: 16px !important;
+    max-height: 16px !important;
+    color: var(--text-secondary) !important;
+    pointer-events: none;
+    display: block;
+    flex-shrink: 0;
+    z-index: 2;
+    box-sizing: border-box;
+}
+
+.searchWrapper svg,
+.searchWrapper .searchIcon {
+    width: 16px !important;
+    height: 16px !important;
+    max-width: 16px !important;
+    max-height: 16px !important;
+    display: block;
+    box-sizing: border-box;
+}
+
+@media (min-width: 1024px) {
+    .searchForm {
+        width: 400px;
+        max-width: 400px;
+    }
+    
+    .searchInput {
+        height: 44px;
+        padding: 14px 42px 14px 16px;
+        font-size: 15px;
+    }
+    
+    .searchIcon {
+        width: 18px !important;
+        height: 18px !important;
+        min-width: 18px !important;
+        max-width: 18px !important;
+        min-height: 18px !important;
+        max-height: 18px !important;
+        right: 14px;
+    }
+    
+    .searchWrapper svg {
+        width: 18px !important;
+        height: 18px !important;
+        max-width: 18px !important;
+        max-height: 18px !important;
+    }
+}
+
+@media (min-width: 1440px) {
+    .searchForm {
+        width: 500px;
+        max-width: 500px;
+    }
+}   

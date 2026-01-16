@@ -1,0 +1,119 @@
+.banner {
+    width: 100%;
+    aspect-ratio: 3.2 / 1;
+    min-height: 140px;
+    max-height: 400px;
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8ecf5 100%);
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    margin: 0 auto;
+}
+
+@media (min-width: 1024px) {
+    .banner {
+        max-height: none;
+    }
+}
+
+.banner:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.bannerLink {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.bannerImage {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    object-position: center;
+}
+
+.title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #1a1a1a;
+    padding: 0 20px;
+    text-align: center;
+}
+
+@media (min-width: 375px) {
+    .banner {
+        min-height: 160px;
+        border-radius: 18px;
+    }
+    
+    .title {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 768px) {
+    .banner {
+        aspect-ratio: 3.5 / 1;
+        min-height: 200px;
+        max-height: 350px;
+        border-radius: 20px;
+    }
+    
+    .title {
+        font-size: 28px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .banner {
+        aspect-ratio: 3.5 / 1;
+        height: auto;
+        min-height: 280px;
+        max-height: none;
+        border-radius: 24px;
+    }
+    
+    .title {
+        font-size: 32px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .banner {
+        aspect-ratio: 4 / 1;
+        min-height: 300px;
+    }
+}
+
+@media (min-width: 1440px) {
+    .banner {
+        aspect-ratio: 4.2 / 1;
+        min-height: 340px;
+        border-radius: 28px;
+    }
+    
+    .title {
+        font-size: 36px;
+    }
+}
+
+@media (min-width: 1920px) {
+    .banner {
+        aspect-ratio: 4.5 / 1;
+        min-height: 400px;
+    }
+    
+    .title {
+        font-size: 40px;
+    }
+}

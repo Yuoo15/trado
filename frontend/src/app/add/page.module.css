@@ -1,0 +1,480 @@
+.wrapper {
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: 120px;
+  background: radial-gradient(circle at 20% 20%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 40%),
+    radial-gradient(circle at 80% 0%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 35%),
+    var(--bg-primary);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.container {
+  max-width: 640px;
+  margin: 0 auto;
+  background: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  padding: 24px 20px;
+  border: none;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+  position: relative;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 900px;
+    padding: 40px;
+  }
+  
+  .form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px 32px;
+  }
+  
+  .label:first-child,
+  .label:nth-child(2),
+  .label:nth-child(5) {
+    grid-column: 1 / -1;
+  }
+  
+  .optionalSection {
+    grid-column: 1 / -1;
+  }
+  
+  .submit {
+    grid-column: 1 / -1;
+    max-width: 400px;
+    margin: 8px auto 0;
+  }
+}
+
+.title {
+  margin: 0 0 16px 0;
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text-primary);
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.input {
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: none;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  display: block;
+}
+
+.input:focus {
+  border-color: var(--accent-color);
+  background: var(--bg-primary);
+}
+
+.textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  resize: vertical;
+  min-height: 100px;
+  font-family: inherit;
+  box-sizing: border-box;
+  min-width: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  overflow-x: hidden;
+  overflow-y: auto;
+  display: block;
+}
+
+.textarea:focus {
+  border-color: var(--accent-color);
+  background: var(--bg-primary);
+}
+
+.select {
+  width: 100%;
+  max-width: 100%;
+  padding: 14px 16px;
+  padding-right: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+  background: var(--bg-secondary);
+  transition: border-color 0.3s ease, background 0.3s ease, color 0.3s ease;
+  font-size: 15px;
+  color: var(--text-primary);
+  outline: none;
+  appearance: none;
+  box-sizing: border-box;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--accent-color) 50%),
+    linear-gradient(135deg, var(--accent-color) 50%, transparent 50%),
+    linear-gradient(to right, var(--bg-secondary), var(--bg-secondary));
+  background-position:
+    calc(100% - 24px) calc(50% - 3px),
+    calc(100% - 16px) calc(50% - 3px),
+    0 0;
+  background-size:
+    8px 8px,
+    8px 8px,
+    100% 100%;
+  background-repeat: no-repeat;
+}
+
+.select:focus {
+  border-color: var(--accent-color);
+  background: var(--bg-primary);
+  background-image:
+    linear-gradient(45deg, transparent 50%, var(--accent-color) 50%),
+    linear-gradient(135deg, var(--accent-color) 50%, transparent 50%),
+    linear-gradient(to right, var(--bg-primary), var(--bg-primary));
+  background-position:
+    calc(100% - 24px) calc(50% - 3px),
+    calc(100% - 16px) calc(50% - 3px),
+    0 0;
+}
+
+.optionalSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.optionalToggle {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 8px;
+  border: 2px solid var(--border-color);
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.optionalToggle:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+  background: var(--bg-primary);
+  box-shadow: 0 4px 8px rgba(0, 76, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.optionalToggle:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+}
+
+.optionalFields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.uploadBox {
+  position: relative;
+  min-height: 160px;
+  width: 100%;
+  max-width: 100%;
+  border: 1px dashed var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-secondary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  box-sizing: border-box;
+  padding: 12px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.uploadBox:hover {
+  border-color: var(--accent-color);
+  background: var(--bg-primary);
+}
+
+.fileInput {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.uploadText {
+  color: var(--accent-color);
+  font-weight: 700;
+  font-size: 15px;
+  text-align: center;
+  padding: 12px;
+}
+
+.previewsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.previewItem {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 2px solid var(--border-color);
+}
+
+.preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.removePreviewBtn {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255, 0, 0, 0.8);
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+  z-index: 10;
+}
+
+.removePreviewBtn:hover {
+  background: rgba(255, 0, 0, 1);
+}
+
+.message {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  font-size: 14px;
+  border: 1px solid #ffe2b8;
+  width: 100%;
+  box-sizing: border-box;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+/* Стили для неавторизованных пользователей - как в чате */
+.chatWrapper {
+  min-height: calc(100vh - 72px);
+  height: calc(100vh - 72px);
+  padding: 0;
+  margin: 0;
+  background: var(--chat-bg, var(--bg-secondary));
+  background-image: 
+    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 80% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  transition: background 0.3s ease;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: visible;
+  position: relative;
+}
+
+.chatWrapper::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 10% 20%, rgba(0, 136, 204, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(120, 119, 198, 0.08) 0%, transparent 40%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.chatContainer {
+  max-width: 100%;
+  margin: 0;
+  background: var(--bg-primary);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0;
+  border: none;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: visible;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 72px);
+  position: relative;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 60px 20px;
+  background: transparent;
+  border: none;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.emptyState h2 {
+  margin: 0 0 12px 0;
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+.emptyState p {
+  margin: 0 0 24px 0;
+  font-size: 15px;
+  color: var(--text-tertiary);
+}
+
+.loginButton {
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--accent-color);
+  color: #fff;
+  text-decoration: none;
+  border-radius: 21px;
+  font-weight: 500;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.loginButton:hover {
+  background: var(--accent-hover);
+}
+
+.submit {
+  margin-top: 4px;
+  width: 100%;
+  max-width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 14px;
+  background: var(--gradient-primary);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+  box-shadow: 0 12px 28px rgba(0, 76, 255, 0.25);
+  box-sizing: border-box;
+  display: block;
+}
+
+.submit:hover {
+  opacity: 0.95;
+  transform: translateY(-1px);
+  box-shadow: 0 12px 26px rgba(0, 76, 255, 0.3);
+}
+
+.submit:active {
+  transform: translateY(0);
+  box-shadow: 0 8px 18px rgba(0, 76, 255, 0.2);
+}
+
+@media (max-width: 768px) {
+  .wrapper {
+    padding: 16px;
+    padding-bottom: 120px;
+  }
+  
+  .container {
+    padding: 20px 16px;
+  }
+}
