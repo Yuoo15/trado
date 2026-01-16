@@ -25,7 +25,6 @@ export default function LoginPage() {
     // Пробуем быстрый вход через специальный endpoint на сервере
     // Проверка админского номера происходит только на сервере в .env
     try {
-      const API_BASE = "http://localhost:3001";
       // Отправляем номер как есть - сервер сам нормализует
       const response = await fetch(`${API_BASE}/api/auth/quick-login`, {
         method: "POST",

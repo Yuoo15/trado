@@ -1,8 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import styles from "./WelcomeModal.module.css";
-
-const API_BASE = "http://localhost:3001";
+import { API_BASE } from "@/config/api";
 
 export default function WelcomeModal() {
   const [modalData, setModalData] = useState(null);

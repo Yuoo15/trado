@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { useModal } from "@/contexts/ModalContext";
 import styles from "./page.module.css";
+import { API_BASE } from "@/config/api";
 
 function CartItemImage({ image, name, onClick, isDeleted }) {
   const [imageError, setImageError] = useState(false);
@@ -26,8 +27,6 @@ function CartItemImage({ image, name, onClick, isDeleted }) {
     />
   );
 }
-
-const API_BASE = "http://localhost:3001";
 
 export default function CartPage() {
   const [items, setItems] = useState([]);

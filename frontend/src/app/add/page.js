@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useModal } from "@/contexts/ModalContext";
 import styles from "./page.module.css";
 import { catalogs } from "@/db/catalogs";
+import { API_BASE } from "@/config/api";
 
 export default function AddPage() {
   const [title, setTitle] = useState("");
@@ -117,7 +118,7 @@ export default function AddPage() {
         form.append("images", image);
       });
 
-      const res = await fetch("http://localhost:3001/api/ads", {
+      const res = await fetch(`${API_BASE}/api/ads`, {
         method: "POST",
         headers: {
           "Authorization": `Bearer ${token}`,
@@ -145,7 +146,7 @@ export default function AddPage() {
         image: firstImage
           ? (firstImage.startsWith("http")
               ? firstImage
-              : `http://localhost:3001${firstImage}`)
+              : `${API_BASE}${firstImage}`)
           : null,
       });
       localStorage.setItem("ads", JSON.stringify(ads));

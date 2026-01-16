@@ -6,8 +6,7 @@ import "swiper/css/pagination";
 import Banner from "@/components/banner/banner";
 import styles from "./banners.module.css";
 import { useEffect, useState } from "react";
-
-const API_BASE = "http://localhost:3001";
+import { API_BASE } from "@/config/api";
 
 export default function Banners() {
   const [swiperInstance, setSwiperInstance] = useState(null);

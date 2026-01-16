@@ -6,8 +6,7 @@ import Logo from "@/components/logo/logo";
 import { useModal } from "@/contexts/ModalContext";
 import { useTheme } from "@/contexts/ThemeContext";
 import styles from "./page.module.css";
-
-const API_BASE = "http://localhost:3001";
+import { API_BASE } from "@/config/api";
 
 export default function ProfilePage() {
   const router = useRouter();

@@ -5,8 +5,7 @@ import { goods as staticGoods } from "@/db/goods";
 import { useModal } from "@/contexts/ModalContext";
 import { categories } from "@/db/cat";
 import styles from "./goods.module.css";
-
-const API_BASE = "http://localhost:3001";
+import { API_BASE } from "@/config/api";
 
 export default function Goods({ searchQuery = "", selectedCategory = null }) {
   const [items, setItems] = useState([]);

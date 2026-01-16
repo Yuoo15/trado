@@ -44,7 +44,7 @@ export default function PasswordPage() {
       // Нормализуем телефон (убираем пробелы)
       const phoneNorm = phone.replace(/\s+/g, '');
       
-      const response = await fetch("http://localhost:3001/api/auth/login", {
+      const response = await fetch(`${API_BASE}/api/auth/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -99,7 +99,7 @@ export default function PasswordPage() {
               src={
                 avatarUrl.startsWith("http")
                   ? avatarUrl
-                  : `http://localhost:3001${avatarUrl}`
+                  : `${API_BASE}${avatarUrl}`
               }
               alt="Avatar"
               className={styles.avatarImage}

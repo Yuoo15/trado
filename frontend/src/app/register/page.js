@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import styles from "./page.module.css";
 import { Raleway } from "next/font/google";
+import { API_BASE } from "@/config/api";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -80,7 +81,7 @@ export default function RegisterPage() {
 
     try {
       setSmsSending(true);
-      const response = await fetch("http://localhost:3001/api/auth/send-sms", {
+      const response = await fetch(`${API_BASE}/api/auth/send-sms`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -126,7 +127,7 @@ export default function RegisterPage() {
         submitData.append("avatar", formData.profileImage);
       }
 
-      const response = await fetch("http://localhost:3001/api/auth/register", {
+      const response = await fetch(`${API_BASE}/api/auth/register`, {
         method: "POST",
         body: submitData,
       });

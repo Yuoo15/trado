@@ -2,8 +2,7 @@
 import Link from 'next/link';
 import { useCallback } from 'react';
 import styles from './banner.module.css';
-
-const API_BASE = "http://localhost:3001";
+import { API_BASE } from "@/config/api";
 
 export default function Banner({ image_url, url, text, bannerId }) {
   const imageUrl = image_url 

@@ -2,6 +2,7 @@
 import { createContext, useContext, useState, useEffect, useRef, useCallback } from "react";
 import { io } from "socket.io-client";
 import { usePathname } from "next/navigation";
+import { API_BASE } from "@/config/api";
 
 const ChatNotificationContext = createContext();
 
@@ -53,7 +54,6 @@ export function ChatNotificationProvider({ children }) {
       return;
     }
 
-    const API_BASE = "http://localhost:3001";
     const newSocket = io(API_BASE, {
       auth: { token },
       transports: ['websocket'], // Используем только websocket для быстрого подключения

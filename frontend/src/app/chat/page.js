@@ -6,8 +6,7 @@ import { io } from "socket.io-client";
 import { useChatNotification } from "@/contexts/ChatNotificationContext";
 import { useModal } from "@/contexts/ModalContext";
 import styles from "./page.module.css";
-
-const API_BASE = "http://localhost:3001";
+import { API_BASE } from "@/config/api";
 
 export default function ChatListPage() {
   const router = useRouter();

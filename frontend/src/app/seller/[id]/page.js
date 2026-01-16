@@ -5,8 +5,7 @@ import Link from "next/link";
 import ProductCard from "@/components/product/productCard";
 import { useModal } from "@/contexts/ModalContext";
 import styles from "./page.module.css";
-
-const API_BASE = "http://localhost:3001";
+import { API_BASE } from "@/config/api";
 
 export default function SellerPage() {
   const params = useParams();
