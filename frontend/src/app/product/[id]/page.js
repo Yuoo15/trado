@@ -372,6 +372,12 @@ export default function ProductDetailPage() {
       return;
     }
 
+    // Проверяем, что пользователь не пытается оставить отзыв на свой товар
+    if (product && product.user_id && userId && product.user_id === userId) {
+      showError("Вы не можете оставить отзыв на свой собственный товар");
+      return;
+    }
+
     if (!reviewText.trim()) {
       showWarning("Пожалуйста, введите текст отзыва");
       return;

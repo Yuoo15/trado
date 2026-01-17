@@ -29,6 +29,7 @@
   border-radius: 0;
   box-shadow: none;
   padding: 0;
+  padding-bottom: 140px; /* Место для inputForm + нижнее меню */
   border: none;
   width: 100%;
   max-width: 100%;
@@ -39,6 +40,12 @@
   flex-direction: column;
   height: 100vh;
   flex: 1;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding-bottom: 0;
+  }
 }
 
 @media (min-width: 1024px) {

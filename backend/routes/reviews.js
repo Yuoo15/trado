@@ -75,10 +75,17 @@ router.post('/', authenticateToken, async (req, res) => {
       return res.status(400).json({ error: 'Рейтинг должен быть от 1 до 5' });
     }
 
-    // Проверяем существование товара
-    const [products] = await db.execute('SELECT id FROM products WHERE id = ?', [productId]);
+    // Проверяем существование товара и получаем user_id продавца
+    const [products] = await db.execute('SELECT id, user_id FROM products WHERE id = ?', [productId]);
     if (products.length === 0) {
       return res.status(404).json({ error: 'Товар не найден' });
+    }
+    
+    const productSellerId = products[0].user_id;
+    
+    // Проверяем, что пользователь не пытается оставить отзыв на свой товар
+    if (productSellerId === userId) {
+      return res.status(403).json({ error: 'Вы не можете оставить отзыв на свой собственный товар' });
     }
 
     // Проверяем, существует ли уже отзыв от этого пользователя

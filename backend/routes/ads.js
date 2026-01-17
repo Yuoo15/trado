@@ -279,8 +279,9 @@ router.post('/:id/promote', authenticateToken, async (req, res) => {
     todayEnd.setHours(23, 59, 59, 999);
 
     const [todayPromotions] = await db.execute(
-      `SELECT COUNT(*) as count FROM promotions 
-       WHERE user_id = ? AND promoted_at >= ? AND promoted_at <= ?`,
+      `SELECT COUNT(*) as count FROM promotions pr
+       JOIN products p ON pr.product_id = p.id
+       WHERE p.user_id = ? AND pr.promoted_at >= ? AND pr.promoted_at <= ?`,
       [userId, todayStart, todayEnd]
     );
 

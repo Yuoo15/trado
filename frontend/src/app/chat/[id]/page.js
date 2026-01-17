@@ -110,7 +110,16 @@ export default function ChatPage() {
     
     newSocket.on('connect_error', (error) => {
       console.error('Socket connection error:', error);
-      showError('Ошибка подключения к чату. Проверьте подключение к серверу.');
+      // Не показываем ошибку сразу, Socket.IO автоматически переподключится
+      // Ошибка показывается только если подключение полностью не удалось
+    });
+    
+    newSocket.on('disconnect', (reason) => {
+      if (reason === 'io server disconnect') {
+        // Сервер отключил клиента, нужно переподключиться вручную
+        console.log('Server disconnected, attempting reconnect...');
+        newSocket.connect();
+      }
     });
     
     newSocket.on('new_message', (message) => {
