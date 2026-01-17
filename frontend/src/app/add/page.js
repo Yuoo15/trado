@@ -27,6 +27,7 @@ export default function AddPage() {
   const [whatsApp, setWhatsApp] = useState("");
   const [telegram, setTelegram] = useState("");
   const [showMessengerFields, setShowMessengerFields] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { showWarning } = useModal();
 
   useEffect(() => {
@@ -83,12 +84,16 @@ export default function AddPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (isSubmitting) return; // Предотвращаем повторные отправки
+    
     setMessage("");
     const isFree = category === "Даром";
     if (!title.trim() || !phone.trim() || (!isFree && !price.trim()) || !category.trim()) {
       setMessage(`Заполните все обязательные поля (название, телефон${isFree ? "" : ", цена"}, категория)`);
       return;
     }
+    
+    setIsSubmitting(true);
     try {
       const token = localStorage.getItem("token");
       if (!token) {
@@ -164,6 +169,8 @@ export default function AddPage() {
       setShowMessengerFields(false);
     } catch (err) {
       setMessage(err.message);
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
@@ -328,8 +335,19 @@ export default function AddPage() {
 
           {message && <div className={styles.message}>{message}</div>}
 
-          <button type="submit" className={styles.submit}>
-            Добавить
+          <button 
+            type="submit" 
+            className={styles.submit}
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <span className={styles.loader}></span>
+                Загрузка...
+              </>
+            ) : (
+              'Добавить'
+            )}
           </button>
         </form>
       </div>

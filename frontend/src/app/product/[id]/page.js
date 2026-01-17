@@ -31,6 +31,7 @@ export default function ProductDetailPage() {
   const [imageError, setImageError] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxImageIndex, setLightboxImageIndex] = useState(0);
+  const [isSubmittingReview, setIsSubmittingReview] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -366,6 +367,8 @@ export default function ProductDetailPage() {
   const handleSubmitReview = async (e) => {
     e.preventDefault();
     
+    if (isSubmittingReview) return; // Предотвращаем повторные отправки
+    
     if (!isAuthenticated) {
       showWarning("Необходимо войти в систему для оставления отзыва");
       router.push("/login");
@@ -383,6 +386,7 @@ export default function ProductDetailPage() {
       return;
     }
 
+    setIsSubmittingReview(true);
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(`${API_BASE}/api/reviews`, {
@@ -420,6 +424,8 @@ export default function ProductDetailPage() {
     } catch (error) {
       console.error("Ошибка отправки отзыва:", error);
       showError(error.message || "Не удалось отправить отзыв");
+    } finally {
+      setIsSubmittingReview(false);
     }
   };
 
@@ -726,8 +732,21 @@ export default function ProductDetailPage() {
               />
               {(editingReviewId === userReview?.id || !userReview) && (
                 <div className={styles.reviewFormButtons}>
-                  <button type="submit" className={styles.submitReviewBtn}>
-                    {userReview ? "Обновить отзыв" : "Отправить отзыв"}
+                  <button 
+                    type="submit" 
+                    className={styles.submitReviewBtn}
+                    disabled={isSubmittingReview}
+                  >
+                    {isSubmittingReview ? (
+                      <>
+                        <span className={styles.loader}></span>
+                        Загрузка...
+                      </>
+                    ) : userReview ? (
+                      "Обновить отзыв"
+                    ) : (
+                      "Отправить отзыв"
+                    )}
                   </button>
                   {editingReviewId === userReview?.id && (
                     <button 

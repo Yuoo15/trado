@@ -12,6 +12,7 @@ function ProductCard({ product, onDelete, isAdmin = false, showDelete = false, i
   const { showConfirm } = useModal();
   const [isInCart, setIsInCart] = useState(false);
   const [imageError, setImageError] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
   
   // Мемоизируем очистку описания
   const cleanDescription = useMemo(() => {
@@ -29,10 +30,11 @@ function ProductCard({ product, onDelete, isAdmin = false, showDelete = false, i
     }
   }, [product.id, router, isDeleted]);
 
-  const handleAddToCart = useCallback((e) => {
+  const handleAddToCart = useCallback(async (e) => {
     e.stopPropagation(); // Останавливаем всплытие события
-    if (isDeleted) return; // Не добавляем удаленные товары
+    if (isDeleted || isAdding) return; // Не добавляем удаленные товары и предотвращаем повторные клики
     
+    setIsAdding(true);
     try {
       const cartId = product.cartId || `${product.source || "item"}-${product.id}`;
       const productName = product.name || product.title || "Товар";
@@ -74,8 +76,11 @@ function ProductCard({ product, onDelete, isAdmin = false, showDelete = false, i
       }
     } catch (e) {
       console.error("Не удалось изменить корзину", e);
+      showToast("Ошибка при добавлении товара в корзину");
+    } finally {
+      setIsAdding(false);
     }
-  }, [product, showToast, isDeleted]);
+  }, [product, showToast, isDeleted, isAdding]);
 
   const handleDelete = useCallback(async () => {
     const confirmed = await showConfirm('Вы уверены, что хотите удалить это объявление?', 'Удалить объявление');
@@ -193,10 +198,20 @@ function ProductCard({ product, onDelete, isAdmin = false, showDelete = false, i
           </div>
         )}
         <button 
-          className={`${styles.addBtn} ${isInCart ? styles.added : ''}`} 
+          className={`${styles.addBtn} ${isInCart ? styles.added : ''} ${isAdding ? styles.loading : ''}`} 
           onClick={handleAddToCart}
+          disabled={isAdding || isDeleted}
         >
-          {isInCart ? 'Добавлено' : 'В корзину'}
+          {isAdding ? (
+            <>
+              <span className={styles.loader}></span>
+              <span style={{ marginLeft: '8px' }}>Загрузка...</span>
+            </>
+          ) : isInCart ? (
+            'Добавлено'
+          ) : (
+            'В корзину'
+          )}
         </button>
       </div>
     </div>

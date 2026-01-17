@@ -24,6 +24,7 @@ export default function ChatPage() {
   const [socket, setSocket] = useState(null);
   const [blockedUsers, setBlockedUsers] = useState([]);
   const [showChatMenu, setShowChatMenu] = useState(false);
+  const [isSending, setIsSending] = useState(false);
   const messagesEndRef = useRef(null);
   const messagesContainerRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -277,12 +278,13 @@ export default function ChatPage() {
 
   const handleSendMessage = async (e) => {
     e.preventDefault();
-    if ((!newMessage.trim() && !selectedImage) || !chatId) return;
+    if (isSending || (!newMessage.trim() && !selectedImage) || !chatId) return;
     if (chat?.other_user_id && isUserBlocked(chat.other_user_id)) {
       showWarning("Пользователь заблокирован. Разблокируйте, чтобы отправлять сообщения.");
       return;
     }
 
+    setIsSending(true);
     const messageText = newMessage.trim();
     const imageToSend = selectedImage;
     const replyToSend = replyingTo;
@@ -358,6 +360,8 @@ export default function ChatPage() {
         console.error("Error sending message:", error);
         showError("Ошибка отправки сообщения");
         setNewMessage(messageText);
+      } finally {
+        setIsSending(false);
       }
       return;
     }
@@ -413,6 +417,8 @@ export default function ChatPage() {
         console.error("Error sending message:", error);
         showError("Ошибка отправки сообщения");
         setNewMessage(messageText);
+      } finally {
+        setIsSending(false);
       }
       return;
     }
@@ -427,11 +433,13 @@ export default function ChatPage() {
       setTimeout(async () => {
         await loadMessages();
         scrollToBottom();
+        setIsSending(false);
       }, 500);
     } catch (error) {
       console.error("Error sending message:", error);
       showError("Ошибка отправки сообщения");
       setNewMessage(messageText);
+      setIsSending(false);
     }
   };
 
@@ -734,20 +742,29 @@ export default function ChatPage() {
             />
             <button
               type="submit"
-              disabled={(!newMessage.trim() && !selectedImage) || (chat?.other_user_id && isUserBlocked(chat.other_user_id))}
+              disabled={isSending || (!newMessage.trim() && !selectedImage) || (chat?.other_user_id && isUserBlocked(chat.other_user_id))}
               className={styles.sendButton}
               title="Отправить"
             >
-              <svg className={styles.sendIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-              <span className={styles.sendText}>Отправить</span>
+              {isSending ? (
+                <>
+                  <span className={styles.loader}></span>
+                  <span className={styles.sendText}>Отправка...</span>
+                </>
+              ) : (
+                <>
+                  <svg className={styles.sendIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    />
+                  </svg>
+                  <span className={styles.sendText}>Отправить</span>
+                </>
+              )}
             </button>
           </div>
         </form>
