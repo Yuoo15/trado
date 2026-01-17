@@ -133,7 +133,17 @@ export default function AddPage() {
 
       const data = await res.json();
       if (!res.ok) {
-        throw new Error(data.error || "Ошибка сохранения");
+        // Специальная обработка ошибок ограничений (429 Too Many Requests)
+        if (res.status === 429) {
+          if (data.message) {
+            setMessage(data.message);
+          } else {
+            setMessage(data.error || "Превышен лимит публикаций");
+          }
+        } else {
+          setMessage(data.error || "Ошибка сохранения");
+        }
+        return;
       }
 
       // Если это было первое объявление, обновляем роль на seller

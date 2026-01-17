@@ -142,6 +142,56 @@ router.post('/', authenticateToken, uploadMultiple.array('images', 10), async (r
       return res.status(400).json({ error: 'Неверная цена' });
     }
 
+    // Проверяем ограничения на публикацию объявлений (не применяется к админам)
+    const [[userRole]] = await db.execute('SELECT role FROM users WHERE id = ?', [userId]);
+    
+    if (userRole && userRole.role !== 'admin') {
+      // Получаем время начала текущего дня (00:00:00)
+      const startOfDay = new Date();
+      startOfDay.setHours(0, 0, 0, 0);
+      
+      // Проверяем количество объявлений за сегодня
+      const [[todayCount]] = await db.execute(
+        'SELECT COUNT(*) as count FROM products WHERE user_id = ? AND created_at >= ?',
+        [userId, startOfDay]
+      );
+      
+      // Ограничение: 3 объявления в день
+      if (todayCount.count >= 3) {
+        return res.status(429).json({ 
+          error: 'Превышен дневной лимит объявлений',
+          message: 'Вы можете публиковать максимум 3 объявления в день. Попробуйте завтра.',
+          limit: 3,
+          current: todayCount.count
+        });
+      }
+      
+      // Проверяем время последнего объявления
+      const [[lastAd]] = await db.execute(
+        'SELECT created_at FROM products WHERE user_id = ? ORDER BY created_at DESC LIMIT 1',
+        [userId]
+      );
+      
+      if (lastAd) {
+        const lastAdTime = new Date(lastAd.created_at);
+        const now = new Date();
+        const hoursSinceLastAd = (now - lastAdTime) / (1000 * 60 * 60);
+        
+        // Ограничение: минимум 5 часов между объявлениями
+        if (hoursSinceLastAd < 5) {
+          const hoursLeft = Math.ceil(5 - hoursSinceLastAd);
+          const minutesLeft = Math.ceil((5 - hoursSinceLastAd) * 60);
+          
+          return res.status(429).json({ 
+            error: 'Слишком частая публикация',
+            message: `Подождите еще ${hoursLeft} ч. (${minutesLeft} мин.) перед публикацией следующего объявления`,
+            hoursLeft: Math.ceil(5 - hoursSinceLastAd),
+            nextAvailableAt: new Date(lastAdTime.getTime() + 5 * 60 * 60 * 1000).toISOString()
+          });
+        }
+      }
+    }
+
     // Обрабатываем множественные изображения
     let imageUrls = [];
     if (req.files && req.files.length > 0) {
