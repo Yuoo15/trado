@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, useMemo, useRef } from "react";
 import ProductCard from "@/components/product/productCard";
 import { goods as staticGoods } from "@/db/goods";
 import { useModal } from "@/contexts/ModalContext";
@@ -13,6 +13,7 @@ export default function Goods({ searchQuery = "", selectedCategory = null }) {
   const [currentUserId, setCurrentUserId] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const { showError, showSuccess, showWarning } = useModal();
+  const containerRef = useRef(null);
 
   useEffect(() => {
     // Проверяем роль и ID пользователя
@@ -101,6 +102,33 @@ export default function Goods({ searchQuery = "", selectedCategory = null }) {
     
     return () => {
       cancelled = true;
+    };
+  }, []);
+
+  // Восстанавливаем позицию скролла при возврате
+  useEffect(() => {
+    if (!isLoading && items.length > 0) {
+      const savedScrollPos = sessionStorage.getItem('homeScrollPosition');
+      if (savedScrollPos) {
+        // Небольшая задержка для корректного рендеринга
+        setTimeout(() => {
+          window.scrollTo(0, parseInt(savedScrollPos, 10));
+          sessionStorage.removeItem('homeScrollPosition');
+        }, 100);
+      }
+    }
+  }, [isLoading, items]);
+
+  // Сохраняем позицию скролла при уходе со страницы
+  useEffect(() => {
+    const handleScroll = () => {
+      sessionStorage.setItem('homeScrollPosition', window.scrollY.toString());
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
