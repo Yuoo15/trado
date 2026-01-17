@@ -34,6 +34,7 @@ const messagesRoutes = require('./routes/messages');
 const bannersRoutes = require('./routes/banners');
 const welcomeModalRoutes = require('./routes/welcomeModal');
 const adminRoutes = require('./routes/admin');
+const profileRoutes = require('./routes/profile');
 app.use('/api/auth', authRoutes);
 app.use('/api/ads', adsRoutes);
 app.use('/api/reviews', reviewsRoutes);
@@ -41,6 +42,7 @@ app.use('/api/messages', messagesRoutes);
 app.use('/api/banners', bannersRoutes);
 app.use('/api/welcome-modal', welcomeModalRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/profile', profileRoutes);
 
 // Test route
 app.get('/', (req, res) => {

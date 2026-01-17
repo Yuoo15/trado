@@ -5,6 +5,7 @@ import Link from "next/link";
 import Logo from "@/components/logo/logo";
 import { useModal } from "@/contexts/ModalContext";
 import { useTheme } from "@/contexts/ThemeContext";
+import ProfileEdit from "@/components/profile-edit/ProfileEdit";
 import styles from "./page.module.css";
 import { API_BASE } from "@/config/api";
 
@@ -449,6 +450,9 @@ export default function ProfilePage() {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <h1 className={styles.title}>Профиль</h1>
+
+        {/* Редактирование профиля */}
+        <ProfileEdit user={user} onUpdate={(updatedUser) => setUser(updatedUser)} />
 
         <div className={styles.profileSection}>
           <div className={styles.avatarSection}>

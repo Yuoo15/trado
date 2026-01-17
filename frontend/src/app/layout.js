@@ -6,6 +6,7 @@ import { ModalProvider } from "@/contexts/ModalContext";
 import { ToastProvider } from "@/contexts/ToastContext";
 import { ThemeProvider } from "@/contexts/ThemeContext";
 import WelcomeModal from "@/components/welcome-modal/WelcomeModal";
+import Preloader from "@/components/preloader/Preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +39,7 @@ export default function RootLayout({ children }) {
           <ToastProvider>
             <ModalProvider>
               <ChatNotificationProvider>
+                <Preloader />
                 <div className="app-shell">
                   {children}
                   <BottomNav />
