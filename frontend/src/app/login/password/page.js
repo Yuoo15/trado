@@ -3,6 +3,7 @@ import { useState, useMemo, useEffect } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./page.module.css";
+import { API_BASE } from "@/config/api";
 
 export default function PasswordPage() {
   const searchParams = useSearchParams();
