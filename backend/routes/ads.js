@@ -169,6 +169,27 @@ router.post('/', authenticateToken, uploadMultiple.array('images', 10), async (r
       [userId, categoryId, title, `Тел: ${phoneNorm}\n${description}`, priceNum, imageUrlJson]
     );
 
+    // Проверяем, это ли первое объявление пользователя
+    const [[adsCount]] = await db.execute(
+      'SELECT COUNT(*) as count FROM products WHERE user_id = ?',
+      [userId]
+    );
+
+    // Если это первое объявление и пользователь - покупатель, делаем его продавцом
+    if (adsCount.count === 1) {
+      const [[user]] = await db.execute(
+        'SELECT role FROM users WHERE id = ?',
+        [userId]
+      );
+      
+      if (user && user.role === 'buyer') {
+        await db.execute(
+          'UPDATE users SET role = ? WHERE id = ?',
+          ['seller', userId]
+        );
+      }
+    }
+
     res.status(201).json({
       id: result.insertId,
       title,
@@ -176,6 +197,7 @@ router.post('/', authenticateToken, uploadMultiple.array('images', 10), async (r
       price: priceNum,
       image_url: imageUrls[0] || null, // Первое изображение для обратной совместимости
       image_urls: imageUrls, // Массив всех изображений (может быть пустым)
+      roleUpdated: adsCount.count === 1, // Флаг для frontend
     });
   } catch (error) {
     console.error('Ошибка создания объявления:', error);

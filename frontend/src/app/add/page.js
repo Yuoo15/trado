@@ -136,6 +136,20 @@ export default function AddPage() {
         throw new Error(data.error || "Ошибка сохранения");
       }
 
+      // Если это было первое объявление, обновляем роль на seller
+      if (data.roleUpdated) {
+        const userStr = localStorage.getItem("user");
+        if (userStr) {
+          try {
+            const user = JSON.parse(userStr);
+            user.role = "seller";
+            localStorage.setItem("user", JSON.stringify(user));
+          } catch (e) {
+            console.error("Ошибка обновления роли:", e);
+          }
+        }
+      }
+
       // Для быстрого отображения локально — добавим в ads localStorage
       const adsRaw = localStorage.getItem("ads") || "[]";
       const ads = JSON.parse(adsRaw);

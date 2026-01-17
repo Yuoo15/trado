@@ -109,7 +109,7 @@ router.post('/send-sms', async (req, res) => {
 // Регистрация (поддержка multipart для аватара)
 router.post('/register', upload.single('avatar'), async (req, res) => {
   try {
-    const { name, last_name, password, role = 'seller', phone, smsCode } = req.body;
+    const { name, last_name, password, role = 'buyer', phone, smsCode } = req.body;
     const avatarUrl = req.file ? `/uploads/${req.file.filename}` : null;
 
     // Валидация
@@ -138,10 +138,10 @@ router.post('/register', upload.single('avatar'), async (req, res) => {
     }
 
     // Проверка роли
-    const allowedRoles = ['seller', 'admin'];
+    const allowedRoles = ['buyer', 'seller', 'admin'];
     if (role && !allowedRoles.includes(role)) {
       return res.status(400).json({ 
-        error: 'Роль должна быть: seller или admin' 
+        error: 'Роль должна быть: buyer, seller или admin' 
       });
     }
 
@@ -173,7 +173,7 @@ router.post('/register', upload.single('avatar'), async (req, res) => {
     // Создание пользователя
     const [result] = await db.execute(
       'INSERT INTO users (name, last_name, email, phone, password, role, avatar_url) VALUES (?, ?, ?, ?, ?, ?, ?)',
-      [name, last_name, autoEmail, phoneNorm, finalPassword, role || 'seller', avatarUrl]
+      [name, last_name, autoEmail, phoneNorm, finalPassword, role || 'buyer', avatarUrl]
     );
 
     // Генерация JWT токена
