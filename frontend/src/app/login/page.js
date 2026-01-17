@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { Raleway } from "next/font/google";
+import { API_BASE } from "@/config/api";
 
 const raleway = Raleway({
   subsets: ["latin"],
