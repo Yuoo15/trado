@@ -35,37 +35,69 @@ const uploadMultiple = multer({
 // GET /api/ads - список объявлений с средним рейтингом
 router.get('/', async (_req, res) => {
   try {
-    const [rows] = await db.execute(
-      `SELECT 
-        p.id, 
-        p.title, 
-        p.description, 
-        p.price, 
-        p.image_url,
-        p.user_id,
-        p.category_id,
-        c.name as category_name,
-        u.name as seller_name,
-        COALESCE(AVG(r.rating), 0) as average_rating,
-        COUNT(r.id) as reviews_count,
-        MAX(pr.promoted_at) as last_promoted_at,
-        CASE 
-          WHEN MAX(pr.promoted_at) IS NOT NULL 
-            AND DATE_ADD(MAX(pr.promoted_at), INTERVAL 7 DAY) >= NOW()
-          THEN 1 
-          ELSE 0 
-        END as is_promoted
-      FROM products p
-      LEFT JOIN reviews r ON p.id = r.product_id
-      LEFT JOIN categories c ON p.category_id = c.id
-      LEFT JOIN users u ON p.user_id = u.id
-      LEFT JOIN promotions pr ON p.id = pr.product_id 
-        AND DATE_ADD(pr.promoted_at, INTERVAL 7 DAY) >= NOW()
-      WHERE p.title NOT LIKE '%Поддержка%'
-      GROUP BY p.id
-      ORDER BY is_promoted DESC, last_promoted_at DESC, p.id DESC 
-      LIMIT 100`
-    );
+    // Сначала проверяем существует ли таблица promotions
+    let hasPromotions = true;
+    try {
+      await db.execute('SELECT 1 FROM promotions LIMIT 1');
+    } catch (err) {
+      hasPromotions = false;
+    }
+
+    // Если promotions нет - упрощенный запрос
+    const query = hasPromotions
+      ? `SELECT 
+          p.id, 
+          p.title, 
+          p.description, 
+          p.price, 
+          p.image_url,
+          p.user_id,
+          p.category_id,
+          c.name as category_name,
+          u.name as seller_name,
+          COALESCE(AVG(r.rating), 0) as average_rating,
+          COUNT(r.id) as reviews_count,
+          MAX(pr.promoted_at) as last_promoted_at,
+          CASE 
+            WHEN MAX(pr.promoted_at) IS NOT NULL 
+              AND DATE_ADD(MAX(pr.promoted_at), INTERVAL 7 DAY) >= NOW()
+            THEN 1 
+            ELSE 0 
+          END as is_promoted
+        FROM products p
+        LEFT JOIN reviews r ON p.id = r.product_id
+        LEFT JOIN categories c ON p.category_id = c.id
+        LEFT JOIN users u ON p.user_id = u.id
+        LEFT JOIN promotions pr ON p.id = pr.product_id 
+          AND DATE_ADD(pr.promoted_at, INTERVAL 7 DAY) >= NOW()
+        WHERE p.title NOT LIKE '%Поддержка%'
+        GROUP BY p.id
+        ORDER BY is_promoted DESC, last_promoted_at DESC, p.id DESC 
+        LIMIT 100`
+      : `SELECT 
+          p.id, 
+          p.title, 
+          p.description, 
+          p.price, 
+          p.image_url,
+          p.user_id,
+          p.category_id,
+          c.name as category_name,
+          u.name as seller_name,
+          COALESCE(AVG(r.rating), 0) as average_rating,
+          COUNT(r.id) as reviews_count,
+          NULL as last_promoted_at,
+          0 as is_promoted
+        FROM products p
+        LEFT JOIN reviews r ON p.id = r.product_id
+        LEFT JOIN categories c ON p.category_id = c.id
+        LEFT JOIN users u ON p.user_id = u.id
+        WHERE p.title NOT LIKE '%Поддержка%'
+        GROUP BY p.id
+        ORDER BY p.id DESC 
+        LIMIT 100`;
+
+    const [rows] = await db.execute(query);
     
     // Преобразуем результаты
     const products = rows.map(row => ({

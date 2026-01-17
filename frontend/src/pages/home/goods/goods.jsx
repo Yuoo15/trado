@@ -11,6 +11,7 @@ export default function Goods({ searchQuery = "", selectedCategory = null }) {
   const [items, setItems] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [currentUserId, setCurrentUserId] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   const { showError, showSuccess, showWarning } = useModal();
 
   useEffect(() => {
@@ -31,6 +32,7 @@ export default function Goods({ searchQuery = "", selectedCategory = null }) {
     let cancelled = false;
     
     const load = async () => {
+      setIsLoading(true);
       try {
         let normalizedApiAds = [];
         try {
@@ -87,6 +89,10 @@ export default function Goods({ searchQuery = "", selectedCategory = null }) {
       } catch {
         if (!cancelled) {
           setItems([]);
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false);
         }
       }
     };
@@ -167,7 +173,18 @@ export default function Goods({ searchQuery = "", selectedCategory = null }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.grid}>
-        {filteredItems.length > 0 ? (
+        {isLoading ? (
+          // Skeleton loader пока загружается
+          Array.from({ length: 6 }).map((_, idx) => (
+            <div key={`skeleton-${idx}`} className={styles.skeletonCard}>
+              <div className={styles.skeletonImage}></div>
+              <div className={styles.skeletonContent}>
+                <div className={styles.skeletonTitle}></div>
+                <div className={styles.skeletonPrice}></div>
+              </div>
+            </div>
+          ))
+        ) : filteredItems.length > 0 ? (
           filteredItems.map((product, idx) => {
             const key = `${product.source || "item"}-${product.id || idx}`;
             const isOwner = currentUserId && product.user_id === currentUserId;
