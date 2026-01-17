@@ -74,23 +74,23 @@
 }
 
 .content.success .icon {
-  background: #e8f5e9;
-  color: #2e7d32;
+  background: var(--success-bg);
+  color: var(--success-color);
 }
 
 .content.error .icon {
-  background: #ffebee;
-  color: #c62828;
+  background: var(--error-bg);
+  color: var(--error-color);
 }
 
 .content.warning .icon {
-  background: #fff3e0;
-  color: #e65100;
+  background: var(--warning-bg);
+  color: var(--warning-color);
 }
 
 .content.info .icon {
-  background: #e3f2fd;
-  color: #1565c0;
+  background: var(--info-bg);
+  color: var(--info-color);
 }
 
 .title {

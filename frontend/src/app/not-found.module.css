@@ -22,7 +22,7 @@
 .container {
   max-width: 600px;
   margin: 0 auto;
-  background: #fff;
+  background: var(--bg-primary);
   border-radius: 20px;
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.08);
   padding: 60px 40px;
@@ -118,7 +118,7 @@
   padding: 0 24px;
   border: 2px solid #004cff;
   border-radius: 14px;
-  background: #fff;
+  background: var(--bg-primary);
   color: #004cff;
   font-size: 16px;
   font-weight: 700;

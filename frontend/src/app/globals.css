@@ -16,6 +16,16 @@
   --gradient-primary: linear-gradient(135deg, #004cff 0%, #2d76ff 100%);
   --bg-gradient-start: #eef3ff;
   --bg-gradient-end: #ffffff;
+  
+  /* Status colors */
+  --success-bg: #e8f5e9;
+  --success-color: #2e7d32;
+  --error-bg: #ffebee;
+  --error-color: #c62828;
+  --warning-bg: #fff3e0;
+  --warning-color: #e65100;
+  --info-bg: #e3f2fd;
+  --info-color: #1565c0;
 }
 
 .dark {
@@ -38,6 +48,16 @@
   --chat-my-message-bg: linear-gradient(135deg, #2a4a5c 0%, #1e3a4a 100%);
   --chat-other-message-bg: #242424;
   --chat-text-dark: #ffffff;
+  
+  /* Status colors for dark theme */
+  --success-bg: #1b5e20;
+  --success-color: #81c784;
+  --error-bg: #b71c1c;
+  --error-color: #ef5350;
+  --warning-bg: #e65100;
+  --warning-color: #ffb74d;
+  --info-bg: #0d47a1;
+  --info-color: #64b5f6;
 }
 
 /* Применяем темную тему к html элементу */
