@@ -330,6 +330,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 20px;
+  padding-bottom: 160px; /* Место для инпута + нижнее меню */
   display: flex;
   flex-direction: column;
   gap: 12px;
@@ -582,6 +583,10 @@
 }
 
 .inputForm {
+  position: fixed;
+  bottom: 60px; /* Над нижним меню */
+  left: 0;
+  right: 0;
   padding: 16px 20px;
   border-top: 1px solid var(--border-color);
   display: flex;
@@ -589,6 +594,14 @@
   gap: 12px;
   background: var(--bg-primary);
   transition: background 0.3s ease;
+  z-index: 100;
+}
+
+@media (min-width: 1024px) {
+  .inputForm {
+    position: relative;
+    bottom: auto;
+  }
 }
 
 .inputRow {

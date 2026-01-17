@@ -201,13 +201,15 @@ export default function ChatListPage() {
       socket.disconnect();
     }
     
-    const newSocket = io(API_BASE, {
+    const socketUrl = typeof window !== 'undefined' ? window.location.origin : API_BASE;
+    const newSocket = io(socketUrl, {
       auth: { token },
-      transports: ['websocket'],
+      path: '/socket.io',
+      transports: ['websocket', 'polling'],
       reconnection: true,
-      reconnectionDelay: 500,
-      reconnectionAttempts: 5,
-      timeout: 5000,
+      reconnectionDelay: 1000,
+      reconnectionAttempts: 10,
+      timeout: 10000,
       forceNew: false
     });
     

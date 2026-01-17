@@ -567,6 +567,7 @@
   flex: 1;
   overflow-y: auto;
   padding: 20px 16px;
+  padding-bottom: 160px; /* Место для инпута + нижнее меню */
   display: flex;
   flex-direction: column;
   gap: 4px;
@@ -872,6 +873,10 @@
 
 /* Форма отправки */
 .inputForm {
+  position: fixed;
+  bottom: 60px; /* Над нижним меню */
+  left: 0;
+  right: 0;
   padding: 8px 12px;
   border-top: 1px solid var(--border-color);
   display: flex;
@@ -879,9 +884,15 @@
   gap: 8px;
   background: var(--bg-secondary);
   flex-shrink: 0;
-  position: relative;
   z-index: 150;
   margin-bottom: 0;
+}
+
+@media (min-width: 1024px) {
+  .inputForm {
+    position: relative;
+    bottom: auto;
+  }
 }
 
 .inputRow {

@@ -54,14 +54,17 @@ export function ChatNotificationProvider({ children }) {
       return;
     }
 
-    const newSocket = io(API_BASE, {
+    // Используем относительный путь для Socket.IO чтобы работало через Nginx
+    const socketUrl = typeof window !== 'undefined' ? window.location.origin : API_BASE;
+    const newSocket = io(socketUrl, {
       auth: { token },
-      transports: ['websocket'], // Используем только websocket для быстрого подключения
+      path: '/socket.io',
+      transports: ['websocket', 'polling'], // Добавляем polling как fallback
       reconnection: true,
-      reconnectionDelay: 500, // Уменьшаем задержку переподключения
-      reconnectionAttempts: 5,
-      timeout: 5000, // Таймаут подключения 5 секунд
-      forceNew: false // Переиспользуем существующее подключение если возможно
+      reconnectionDelay: 1000,
+      reconnectionAttempts: 10,
+      timeout: 10000,
+      forceNew: false
     });
 
     newSocket.on('connect', () => {
