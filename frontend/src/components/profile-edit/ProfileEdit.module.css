@@ -261,6 +261,18 @@
   .avatarWrapper {
     width: 80px;
     height: 80px;
+    position: relative;
+  }
+
+  .editAvatarBtn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 28px;
+    height: 28px;
+    border: 2px solid var(--bg-primary);
+    font-size: 12px;
+    z-index: 10;
   }
 
   .avatarPlaceholder {
