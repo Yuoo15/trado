@@ -103,7 +103,6 @@ export default function BottomNav() {
               <svg className={styles.icon} viewBox="0 0 24 24" aria-hidden="true">
                 {item.icon}
               </svg>
-              {showBadge && <span className={styles.badge}></span>}
             </div>
             <span className={styles.label}>{item.label}</span>
           </Link>

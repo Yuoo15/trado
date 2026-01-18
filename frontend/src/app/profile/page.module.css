@@ -168,10 +168,12 @@
   align-items: center;
   gap: 12px;
   padding: 12px;
+  padding-right: 8px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   transition: all 0.2s ease;
+  position: relative;
 }
 
 .adItem:hover {
@@ -219,7 +221,7 @@
 }
 
 .deleteBtn {
-  padding: 8px 12px;
+  padding: 8px;
   background: transparent;
   border: 1px solid var(--border-color);
   border-radius: 6px;
@@ -228,6 +230,12 @@
   transition: all 0.2s ease;
   flex-shrink: 0;
   color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
 }
 
 .deleteBtn:hover {

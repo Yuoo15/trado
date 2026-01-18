@@ -20,21 +20,21 @@
 
 .editAvatarBtn {
   position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 36px;
-  height: 36px;
+  bottom: 2px;
+  right: 2px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   background: var(--accent-color);
-  border: 3px solid var(--bg-secondary);
+  border: 2px solid var(--bg-primary);
   color: #fff;
-  font-size: 16px;
+  font-size: 14px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.2s ease;
-  z-index: 1;
+  z-index: 10;
 }
 
 .editAvatarBtn:hover:not(:disabled) {
@@ -67,7 +67,9 @@
   color: var(--text-secondary);
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 6px;
+  text-align: center;
 }
 
 .avatar {
