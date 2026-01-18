@@ -221,26 +221,26 @@ export default function ProfilePage() {
             className={`${styles.tab} ${activeTab === "ads" ? styles.active : ""}`}
             onClick={() => setActiveTab("ads")}
           >
-            📦 Объявления
+            Объявления
           </button>
           <button
             className={`${styles.tab} ${activeTab === "reviews" ? styles.active : ""}`}
             onClick={() => setActiveTab("reviews")}
           >
-            ⭐ Отзывы
+            Отзывы
           </button>
           <button
             className={`${styles.tab} ${activeTab === "settings" ? styles.active : ""}`}
             onClick={() => setActiveTab("settings")}
           >
-            ⚙️ Настройки
+            Настройки
           </button>
           {isAdmin && (
             <button
               className={`${styles.tab} ${activeTab === "admin" ? styles.active : ""}`}
               onClick={() => setActiveTab("admin")}
             >
-              👑 Админ
+              Админ
             </button>
           )}
         </div>
