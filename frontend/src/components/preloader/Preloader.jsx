@@ -14,7 +14,7 @@ export default function Preloader() {
       const timer = setTimeout(() => {
         setShowIntro(false);
         sessionStorage.setItem("hasSeenIntro", "true");
-      }, 2500);
+      }, 4000);
 
       return () => clearTimeout(timer);
     }
