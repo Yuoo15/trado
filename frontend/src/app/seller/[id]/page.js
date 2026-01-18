@@ -216,7 +216,7 @@ export default function SellerPage() {
             <div className={styles.sellerInfo}>
               <h1 className={styles.sellerName}>{seller.name || 'Неизвестный продавец'}</h1>
               <div className={styles.sellerMeta}>
-                <span className={styles.sellerRole}>Продавец</span>
+                <span className={styles.sellerRole}>{seller.status || 'Продавец'}</span>
                 {seller.phone && seller.role !== "admin" && (
                   <span className={styles.sellerPhone}>📱 {seller.phone}</span>
                 )}

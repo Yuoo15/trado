@@ -199,17 +199,19 @@ export default function ProfileEdit({ user, onUpdate }) {
 
       {/* Статус */}
       <div className={styles.statusSection}>
-        <label className={styles.label}>Статус</label>
+        <label className={styles.label}>Тип деятельности</label>
         {isEditingStatus ? (
           <div className={styles.statusEdit}>
-            <input
-              type="text"
-              className={styles.statusInput}
+            <select
+              className={styles.statusSelect}
               value={status}
               onChange={(e) => setStatus(e.target.value)}
-              placeholder="Например: Доступен для сделок"
-              maxLength={200}
-            />
+            >
+              <option value="">Не выбрано</option>
+              <option value="Продавец">Продавец</option>
+              <option value="Фрилансер">Фрилансер</option>
+              <option value="Предоставляю услуги">Предоставляю услуги</option>
+            </select>
             <div className={styles.statusActions}>
               <button className={styles.saveBtn} onClick={handleStatusUpdate}>
                 Сохранить
@@ -224,12 +226,11 @@ export default function ProfileEdit({ user, onUpdate }) {
                 Отмена
               </button>
             </div>
-            <span className={styles.charCount}>{status.length}/200</span>
           </div>
         ) : (
           <div className={styles.statusDisplay}>
             <p className={styles.statusText}>
-              {status || "Нет статуса"}
+              {status || "Не выбрано"}
             </p>
             <button
               className={styles.editBtn}
