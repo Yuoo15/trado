@@ -14,7 +14,7 @@ export default function Preloader() {
       const timer = setTimeout(() => {
         setShowIntro(false);
         sessionStorage.setItem("hasSeenIntro", "true");
-      }, 4000);
+      }, 7000);
 
       return () => clearTimeout(timer);
     }
@@ -57,6 +57,16 @@ export default function Preloader() {
         {/* Название */}
         <h1 className={styles.brandName}>TRADO</h1>
         <p className={styles.tagline}>Маркетплейс Казахстана</p>
+
+        {/* Индикатор загрузки */}
+        <div className={styles.loadingContainer}>
+          <div className={styles.loadingText}>Загрузка</div>
+          <div className={styles.loadingDots}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
       </div>
     </div>
   );
