@@ -154,7 +154,7 @@ export default function ProfileEdit({ user, onUpdate }) {
 
   return (
     <div className={styles.container}>
-      {/* Аватарка */}
+      {/* Аватарка с информацией */}
       <div className={styles.avatarSection}>
         <div className={styles.avatarWrapper}>
           {avatarPreview ? (
@@ -169,24 +169,14 @@ export default function ProfileEdit({ user, onUpdate }) {
               <div className={styles.spinner}></div>
             </div>
           )}
-        </div>
-        <div className={styles.avatarActions}>
           <button
-            className={styles.uploadBtn}
+            className={styles.editAvatarBtn}
             onClick={() => fileInputRef.current?.click()}
             disabled={isUploadingAvatar}
+            title="Изменить фото"
           >
-            {avatarPreview ? "Изменить" : "Загрузить"}
+            ✏️
           </button>
-          {avatarPreview && (
-            <button
-              className={styles.deleteBtn}
-              onClick={handleDeleteAvatar}
-              disabled={isUploadingAvatar}
-            >
-              Удалить
-            </button>
-          )}
           <input
             ref={fileInputRef}
             type="file"
@@ -194,6 +184,16 @@ export default function ProfileEdit({ user, onUpdate }) {
             onChange={handleAvatarChange}
             className={styles.fileInput}
           />
+        </div>
+        <div className={styles.userInfo}>
+          <div className={styles.userName}>
+            {user?.name || "Имя"} {user?.last_name || ""}
+          </div>
+          {user?.phone && (
+            <div className={styles.userPhone}>
+              📱 {user.phone}
+            </div>
+          )}
         </div>
       </div>
 
