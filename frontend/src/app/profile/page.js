@@ -287,7 +287,7 @@ export default function ProfilePage() {
                           className={styles.deleteBtn}
                           onClick={(e) => handleDeleteAd(ad.id, e)}
                         >
-                          🗑️
+                          Удалить
                         </button>
                       </div>
                     );

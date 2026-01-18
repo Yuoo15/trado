@@ -168,12 +168,13 @@
   align-items: center;
   gap: 12px;
   padding: 12px;
-  padding-right: 8px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
   transition: all 0.2s ease;
   position: relative;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .adItem:hover {
@@ -221,11 +222,12 @@
 }
 
 .deleteBtn {
-  padding: 8px;
+  padding: 8px 12px;
   background: transparent;
   border: 1px solid var(--border-color);
   border-radius: 6px;
-  font-size: 16px;
+  font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
@@ -233,9 +235,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  min-width: 36px;
+  white-space: nowrap;
 }
 
 .deleteBtn:hover {
@@ -526,5 +526,10 @@
 
   .adPrice {
     font-size: 15px;
+  }
+
+  .deleteBtn {
+    padding: 6px 10px;
+    font-size: 13px;
   }
 }
