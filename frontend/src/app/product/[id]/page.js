@@ -645,7 +645,7 @@ export default function ProductDetailPage() {
                 </div>
                 <div className={styles.sellerDetails}>
                   <div className={styles.sellerName}>{seller.name || 'Неизвестный продавец'}</div>
-                  <div className={styles.sellerLabel}>Продавец</div>
+                  <div className={styles.sellerLabel}>{seller.status || 'Продавец'}</div>
                 </div>
                 <div className={styles.sellerArrow}>→</div>
               </div>
