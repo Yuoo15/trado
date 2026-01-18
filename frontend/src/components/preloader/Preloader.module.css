@@ -49,40 +49,33 @@
   height: 100%;
 }
 
-/* Внешний круг */
-.outerRing {
+.circle {
   fill: none;
   stroke: var(--accent-color);
   stroke-width: 3;
-  stroke-dasharray: 377;
-  stroke-dashoffset: 377;
-  animation: drawRing 1.2s ease-out forwards;
+  stroke-dasharray: 440;
+  stroke-dashoffset: 440;
+  animation: drawCircle 1.2s ease-out forwards;
 }
 
-@keyframes drawRing {
+@keyframes drawCircle {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-/* Буква T */
-.letterT {
+.logoText {
   fill: var(--accent-color);
+  font-size: 100px;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   opacity: 0;
-  animation: letterAppear 0.5s ease-out 1s forwards;
+  animation: textFade 0.4s ease-out 0.8s forwards;
 }
 
-@keyframes letterAppear {
-  0% {
-    opacity: 0;
-    transform: scale(0.7) translateY(10px);
-  }
-  60% {
-    transform: scale(1.05) translateY(-2px);
-  }
-  100% {
+@keyframes textFade {
+  to {
     opacity: 1;
-    transform: scale(1) translateY(0);
   }
 }
 
