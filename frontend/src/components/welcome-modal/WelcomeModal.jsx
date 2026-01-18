@@ -11,6 +11,13 @@ export default function WelcomeModal() {
   useEffect(() => {
     const loadModalData = async () => {
       try {
+        // Проверяем, было ли модальное окно уже показано
+        const modalShown = localStorage.getItem('welcomeModalShown');
+        if (modalShown === 'true') {
+          setLoading(false);
+          return;
+        }
+
         const res = await fetch(`${API_BASE}/api/welcome-modal`);
         if (res.ok) {
           const data = await res.json();
@@ -32,6 +39,8 @@ export default function WelcomeModal() {
 
   const handleClose = () => {
     setIsVisible(false);
+    // Сохраняем в localStorage, что модальное окно было показано
+    localStorage.setItem('welcomeModalShown', 'true');
   };
 
   if (loading || !modalData || !isVisible || !modalData.is_active) {
