@@ -9,7 +9,8 @@
   align-items: center;
   justify-content: center;
   z-index: 99999;
-  animation: fadeOut 0.5s ease-out 0.3s forwards;
+  overflow: hidden;
+  animation: fadeOut 0.6s ease-out 0.3s forwards;
 }
 
 @keyframes fadeOut {
@@ -19,17 +20,111 @@
   }
 }
 
+/* Анимированный фон */
+.background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.gradient1,
+.gradient2,
+.gradient3 {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  opacity: 0.3;
+  animation: float 8s ease-in-out infinite;
+}
+
+.gradient1 {
+  width: 400px;
+  height: 400px;
+  background: linear-gradient(135deg, #004cff 0%, #2d76ff 100%);
+  top: -200px;
+  left: -200px;
+  animation-delay: 0s;
+}
+
+.gradient2 {
+  width: 350px;
+  height: 350px;
+  background: linear-gradient(135deg, #2d76ff 0%, #6ba3ff 100%);
+  bottom: -150px;
+  right: -150px;
+  animation-delay: 2s;
+}
+
+.gradient3 {
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, #004cff 0%, #4d8aff 100%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-30px, 30px) scale(0.9);
+  }
+}
+
+/* Контент */
 .content {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 40px;
+  z-index: 2;
+}
+
+/* Логотип */
+.logoContainer {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.logoGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 140px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(0, 76, 255, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.3;
+  }
 }
 
 .logo {
-  width: 80px;
-  height: 80px;
-  animation: scaleIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: scaleIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 @keyframes scaleIn {
@@ -46,15 +141,23 @@
 .logoSvg {
   width: 100%;
   height: 100%;
+  filter: drop-shadow(0 4px 20px rgba(0, 76, 255, 0.5));
+}
+
+.circleBg {
+  fill: none;
+  stroke: var(--border-color);
+  stroke-width: 2;
 }
 
 .circle {
   fill: none;
-  stroke: var(--accent-color);
+  stroke: url(#logoGradient);
   stroke-width: 3;
-  stroke-dasharray: 251;
-  stroke-dashoffset: 251;
-  animation: drawCircle 1.5s ease-out forwards;
+  stroke-dasharray: 240;
+  stroke-dashoffset: 240;
+  animation: drawCircle 2s ease-out forwards;
+  stroke-linecap: round;
 }
 
 @keyframes drawCircle {
@@ -64,12 +167,12 @@
 }
 
 .text {
-  fill: var(--accent-color);
-  font-size: 40px;
-  font-weight: 700;
+  fill: url(#logoGradient);
+  font-size: 48px;
+  font-weight: 900;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   opacity: 0;
-  animation: fadeInText 0.5s ease-out 0.5s forwards;
+  animation: fadeInText 0.6s ease-out 0.8s forwards;
 }
 
 @keyframes fadeInText {
@@ -78,48 +181,79 @@
   }
 }
 
-.spinner {
-  position: relative;
-  width: 60px;
-  height: 60px;
+/* Прогресс бар */
+.progressContainer {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: slideUp 0.6s ease-out 0.4s backwards;
 }
 
-.spinnerRing {
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.progressBar {
+  width: 100%;
+  height: 6px;
+  background: var(--bg-tertiary);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #004cff 0%, #2d76ff 50%, #6ba3ff 100%);
+  border-radius: 10px;
+  transition: width 0.3s ease;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0, 76, 255, 0.5);
+}
+
+.progressGlow {
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  right: 0;
+  width: 100px;
   height: 100%;
-  border: 3px solid transparent;
-  border-top-color: var(--accent-color);
-  border-radius: 50%;
-  animation: spin 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.5) 100%);
+  animation: shimmer 1.5s infinite;
 }
 
-.spinnerRing:nth-child(1) {
-  animation-delay: -0.45s;
-  border-top-color: var(--accent-color);
-}
-
-.spinnerRing:nth-child(2) {
-  animation-delay: -0.3s;
-  border-top-color: var(--accent-hover);
-  opacity: 0.7;
-}
-
-.spinnerRing:nth-child(3) {
-  animation-delay: -0.15s;
-  border-top-color: var(--accent-color);
-  opacity: 0.4;
-}
-
-@keyframes spin {
+@keyframes shimmer {
   0% {
-    transform: rotate(0deg);
+    transform: translateX(-100%);
   }
   100% {
-    transform: rotate(360deg);
+    transform: translateX(100%);
   }
+}
+
+.progressText {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--accent-color);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+
+/* Текст загрузки */
+.loadingTextContainer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  animation: slideUp 0.6s ease-out 0.6s backwards;
 }
 
 .loadingText {
@@ -127,32 +261,131 @@
   font-size: 16px;
   font-weight: 500;
   margin: 0;
-  animation: pulse 1.5s ease-in-out infinite;
+  min-width: 160px;
 }
 
-@keyframes pulse {
-  0%,
-  100% {
+.dots {
+  display: flex;
+  gap: 6px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-color);
+  animation: dotBounce 1.4s infinite ease-in-out;
+}
+
+.dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes dotBounce {
+  0%, 80%, 100% {
+    transform: scale(0);
     opacity: 0.5;
   }
-  50% {
+  40% {
+    transform: scale(1);
     opacity: 1;
   }
 }
 
-/* Адаптив для мобильных */
+/* Частицы */
+.particles {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--accent-color);
+  border-radius: 50%;
+  opacity: 0;
+  animation: particleFloat 6s infinite ease-in-out;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 0.5s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 1s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 1.5s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 2s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 2.5s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 3s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 3.5s; }
+.particle:nth-child(9) { left: 90%; animation-delay: 4s; }
+.particle:nth-child(10) { left: 15%; animation-delay: 4.5s; }
+.particle:nth-child(11) { left: 25%; animation-delay: 0.2s; }
+.particle:nth-child(12) { left: 35%; animation-delay: 0.7s; }
+.particle:nth-child(13) { left: 45%; animation-delay: 1.2s; }
+.particle:nth-child(14) { left: 55%; animation-delay: 1.7s; }
+.particle:nth-child(15) { left: 65%; animation-delay: 2.2s; }
+.particle:nth-child(16) { left: 75%; animation-delay: 2.7s; }
+.particle:nth-child(17) { left: 85%; animation-delay: 3.2s; }
+.particle:nth-child(18) { left: 95%; animation-delay: 3.7s; }
+.particle:nth-child(19) { left: 12%; animation-delay: 4.2s; }
+.particle:nth-child(20) { left: 88%; animation-delay: 4.7s; }
+
+@keyframes particleFloat {
+  0% {
+    bottom: -10px;
+    opacity: 0;
+    transform: translateX(0) scale(0);
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    bottom: 110%;
+    opacity: 0;
+    transform: translateX(calc(-50px + 100px * var(--random, 0.5))) scale(0);
+  }
+}
+
+/* Адаптив */
 @media (max-width: 768px) {
-  .logo {
-    width: 60px;
-    height: 60px;
+  .logoContainer {
+    width: 90px;
+    height: 90px;
   }
 
-  .spinner {
-    width: 50px;
-    height: 50px;
+  .logoGlow {
+    width: 110px;
+    height: 110px;
+  }
+
+  .progressContainer {
+    width: 250px;
+  }
+
+  .progressText {
+    font-size: 16px;
   }
 
   .loadingText {
     font-size: 14px;
+    min-width: 140px;
+  }
+
+  .gradient1,
+  .gradient2,
+  .gradient3 {
+    filter: blur(60px);
   }
 }
