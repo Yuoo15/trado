@@ -7,7 +7,7 @@ const path = require('path');
 const fs = require('fs');
 
 // Настройка хранения для изображений сообщений
-const messagesUploadsDir = path.join(__dirname, '../public/uploads/messages');
+const messagesUploadsDir = path.join(__dirname, '../uploads/messages');
 if (!fs.existsSync(messagesUploadsDir)) {
   fs.mkdirSync(messagesUploadsDir, { recursive: true });
 }

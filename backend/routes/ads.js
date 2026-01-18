@@ -7,7 +7,7 @@ const multer = require('multer');
 const { authenticateToken, authorizeRole } = require('../middleware/auth');
 
 // Хранилище для фото объявлений
-const uploadsDir = path.join(__dirname, '../public/uploads/ads');
+const uploadsDir = path.join(__dirname, '../uploads/ads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -297,7 +297,7 @@ router.delete('/:id', authenticateToken, async (req, res) => {
 
         // Удаляем все файлы
         imageUrls.forEach(imageUrl => {
-          const imagePath = path.join(__dirname, '../public', imageUrl);
+          const imagePath = path.join(__dirname, '..', imageUrl);
           if (fs.existsSync(imagePath)) {
             try {
               fs.unlinkSync(imagePath);
