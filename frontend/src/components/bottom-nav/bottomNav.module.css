@@ -22,8 +22,6 @@
   grid-template-columns: repeat(5, 1fr);
   align-items: center;
   background: var(--nav-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid var(--nav-border);
   box-shadow: var(--nav-shadow);
   z-index: 100;
@@ -164,7 +162,6 @@
     height: 80px;
     padding: 0 20px;
     background: var(--nav-bg);
-    backdrop-filter: blur(20px);
     overflow: visible;
   }
 
