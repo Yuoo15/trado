@@ -2,9 +2,7 @@
   min-height: 100vh;
   padding: 12px;
   padding-bottom: 120px;
-  background: radial-gradient(circle at 20% 20%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 40%),
-    radial-gradient(circle at 80% 0%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 35%),
-    var(--bg-primary);
+  background: var(--bg-primary);
   transition: background 0.3s ease;
   width: 100%;
   max-width: 100%;
@@ -103,8 +101,8 @@
 }
 
 .statCard {
-  background: linear-gradient(135deg, #f8f9ff 0%, #ffffff 100%);
-  border: 1px solid #e8ecf5;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 20px;
   text-align: center;
@@ -178,7 +176,7 @@
   gap: 12px;
   padding: 16px;
   background: var(--bg-secondary);
-  border: 1px solid #e8ecf5;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
