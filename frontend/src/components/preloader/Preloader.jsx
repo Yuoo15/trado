@@ -38,19 +38,15 @@ export default function Preloader() {
               className={styles.outerRect}
             />
             
-            {/* Внутренние элементы - стилизованная T */}
-            <g className={styles.logoElements}>
-              {/* Горизонтальная линия T */}
-              <rect x="60" y="70" width="80" height="12" rx="6" />
-              
-              {/* Вертикальная линия T */}
-              <rect x="94" y="70" width="12" height="60" rx="6" />
-              
-              {/* Декоративные точки */}
-              <circle cx="100" cy="145" r="4" />
-              <circle cx="85" cy="145" r="3" />
-              <circle cx="115" cy="145" r="3" />
-            </g>
+            {/* Текст TRADO прорисовывается */}
+            <text 
+              x="100" 
+              y="115" 
+              textAnchor="middle" 
+              className={styles.logoText}
+            >
+              TRADO
+            </text>
           </svg>
         </div>
 
