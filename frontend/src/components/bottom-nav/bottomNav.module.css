@@ -1,11 +1,11 @@
 :root {
-  --nav-bg: #ffffffcc;
+  --nav-bg: #ffffff;
   --nav-border: #e7e9f0;
   --nav-shadow: 0 -6px 24px rgba(0, 0, 0, 0.08);
   --blue: #004cff;
 }
 
-.dark {
+:global(.dark) {
   --nav-bg: #121212;
   --nav-border: #2a2a2a;
   --nav-shadow: 0 -6px 24px rgba(0, 0, 0, 0.5);
