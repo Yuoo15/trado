@@ -455,23 +455,11 @@ export default function ProfilePage() {
         <ProfileEdit user={user} onUpdate={(updatedUser) => setUser(updatedUser)} />
 
         <div className={styles.profileSection}>
-          <div className={styles.avatarSection}>
-            {avatarUrl ? (
-              <img src={avatarUrl} alt={displayName} className={styles.avatar} onError={(e) => {
-                e.target.style.display = 'none';
-                e.target.nextElementSibling.style.display = 'flex';
-              }} />
-            ) : null}
-            <div 
-              className={styles.avatarPlaceholder}
-              style={{ display: avatarUrl ? 'none' : 'flex' }}
-            >
-              {displayName[0].toUpperCase()}
-            </div>
-          </div>
-
           <div className={styles.userInfo}>
             <h2 className={styles.userName}>{displayName}</h2>
+            {user.status && (
+              <div className={styles.statusBadge}>{user.status}</div>
+            )}
             <div className={styles.userDetail}>
               <span className={styles.label}>Телефон:</span>
               <span className={styles.value}>{displayPhone}</span>
