@@ -17,17 +17,7 @@
   height: calc(100vh - 72px);
   padding: 0;
   margin: 0;
-  background: var(--chat-bg, var(--bg-secondary));
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.03) 2px,
-      rgba(0, 0, 0, 0.03) 4px
-    );
+  background: var(--bg-primary);
   transition: background 0.3s ease;
   width: 100%;
   max-width: 100%;
@@ -38,17 +28,7 @@
 }
 
 .wrapper::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 10% 20%, rgba(0, 136, 204, 0.08) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(120, 119, 198, 0.08) 0%, transparent 40%);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 @media (min-width: 1024px) {
@@ -273,9 +253,6 @@
   flex-direction: column;
   height: 100%;
   background: var(--bg-secondary);
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%);
   overflow: hidden;
   position: relative;
 }
@@ -293,9 +270,6 @@
   align-items: center;
   justify-content: center;
   background: var(--bg-secondary);
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%);
 }
 
 @media (min-width: 1024px) {
@@ -573,16 +547,6 @@
   gap: 4px;
   min-height: 0;
   background: var(--bg-secondary);
-  background-image: 
-    radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(120, 119, 198, 0.15) 0%, transparent 50%),
-    repeating-linear-gradient(
-      0deg,
-      transparent,
-      transparent 2px,
-      rgba(0, 0, 0, 0.02) 2px,
-      rgba(0, 0, 0, 0.02) 4px
-    );
   position: relative;
   z-index: 1;
 }
@@ -623,33 +587,11 @@
 }
 
 .messagesContainer::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 10% 20%, rgba(0, 136, 204, 0.06) 0%, transparent 40%),
-    radial-gradient(circle at 90% 80%, rgba(120, 119, 198, 0.06) 0%, transparent 40%);
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 .messagesContainer::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 100px;
-  background: linear-gradient(
-    to bottom,
-    var(--chat-bg, rgba(229, 221, 213, 0.8)) 0%,
-    transparent 100%
-  );
-  pointer-events: none;
-  z-index: 0;
+  display: none;
 }
 
 .messagesContainer::-webkit-scrollbar {

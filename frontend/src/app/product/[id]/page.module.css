@@ -591,14 +591,14 @@
 .ratingSection label {
   font-size: 14px;
   font-weight: 600;
-  color: #333;
+  color: var(--text-primary);
 }
 
 .ratingSelect {
   padding: 8px 12px;
-  border: 2px solid #d9e4ff;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
-  background: #fff;
+  background: var(--bg-primary);
   font-size: 14px;
   color: var(--text-primary);
   outline: none;
@@ -608,9 +608,9 @@
 .reviewTextarea {
   width: 100%;
   padding: 12px 16px;
-  border: 2px solid #d9e4ff;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
-  background: #fff;
+  background: var(--bg-primary);
   font-size: 15px;
   color: var(--text-primary);
   outline: none;
@@ -621,7 +621,7 @@
 }
 
 .reviewTextarea:focus {
-  border-color: #004cff;
+  border-color: var(--accent-color);
   box-shadow: 0 0 0 3px rgba(0, 76, 255, 0.12);
 }
 
