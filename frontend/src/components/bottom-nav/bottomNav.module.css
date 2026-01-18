@@ -6,8 +6,8 @@
 }
 
 .dark {
-  --nav-bg: #1e1e1e;
-  --nav-border: #3a3a3a;
+  --nav-bg: #121212;
+  --nav-border: #2a2a2a;
   --nav-shadow: 0 -6px 24px rgba(0, 0, 0, 0.5);
   --blue: #4d8aff;
 }
@@ -23,6 +23,7 @@
   align-items: center;
   background: var(--nav-bg);
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-top: 1px solid var(--nav-border);
   box-shadow: var(--nav-shadow);
   z-index: 100;
