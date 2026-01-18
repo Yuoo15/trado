@@ -66,7 +66,7 @@ const verifySmsCode = async (phone, smsCode) => {
 };
 
 // Настройка хранения для аватаров
-const uploadsDir = path.join(__dirname, '../public/uploads');
+const uploadsDir = path.join(__dirname, '../uploads');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
