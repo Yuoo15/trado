@@ -28,25 +28,25 @@ export default function Preloader() {
         {/* Логотип */}
         <div className={styles.logoContainer}>
           <svg viewBox="0 0 200 200" className={styles.logo}>
-            {/* Внешняя рамка */}
-            <rect 
-              x="30" 
-              y="30" 
-              width="140" 
-              height="140" 
-              rx="20" 
-              className={styles.outerRect}
+            {/* Внешний круг */}
+            <circle 
+              cx="100" 
+              cy="100" 
+              r="65" 
+              className={styles.outerCircle}
             />
             
-            {/* Текст TRADO прорисовывается */}
-            <text 
-              x="100" 
-              y="115" 
-              textAnchor="middle" 
-              className={styles.logoText}
-            >
-              TRADO
-            </text>
+            {/* Стилизованная T - современный дизайн */}
+            <g className={styles.logoIcon}>
+              {/* Вертикальная линия */}
+              <line x1="100" y1="65" x2="100" y2="135" className={styles.iconLine} />
+              
+              {/* Горизонтальная верхняя линия */}
+              <line x1="70" y1="65" x2="130" y2="65" className={styles.iconLine} />
+              
+              {/* Декоративный элемент - точка снизу */}
+              <circle cx="100" cy="145" r="5" className={styles.iconDot} />
+            </g>
           </svg>
         </div>
 
