@@ -27,16 +27,45 @@ export default function Preloader() {
       <div className={styles.content}>
         {/* Логотип */}
         <div className={styles.logoContainer}>
-          <svg viewBox="0 0 400 120" className={styles.logo}>
-            {/* Текст TRADO написанный пером */}
-            <text 
-              x="200" 
-              y="80" 
-              textAnchor="middle" 
-              className={styles.handwrittenText}
-            >
-              TRADO
-            </text>
+          <svg viewBox="0 0 200 200" className={styles.logo}>
+            {/* Три геометрические формы - символизируют торговлю */}
+            
+            {/* Левая стрелка вверх - продажа */}
+            <path 
+              d="M 60 120 L 60 60 L 40 80" 
+              className={styles.arrow}
+              style={{ animationDelay: '0s' }}
+            />
+            <path 
+              d="M 60 60 L 80 80" 
+              className={styles.arrow}
+              style={{ animationDelay: '0.1s' }}
+            />
+            
+            {/* Центральный круг - связь */}
+            <circle 
+              cx="100" 
+              cy="90" 
+              r="20" 
+              className={styles.centerCircle}
+            />
+            
+            {/* Правая стрелка вниз - покупка */}
+            <path 
+              d="M 140 60 L 140 120 L 120 100" 
+              className={styles.arrow}
+              style={{ animationDelay: '0.2s' }}
+            />
+            <path 
+              d="M 140 120 L 160 100" 
+              className={styles.arrow}
+              style={{ animationDelay: '0.3s' }}
+            />
+            
+            {/* Декоративные точки */}
+            <circle cx="60" cy="130" r="3" className={styles.dot} style={{ animationDelay: '1.2s' }} />
+            <circle cx="100" cy="130" r="3" className={styles.dot} style={{ animationDelay: '1.3s' }} />
+            <circle cx="140" cy="130" r="3" className={styles.dot} style={{ animationDelay: '1.4s' }} />
           </svg>
         </div>
 
