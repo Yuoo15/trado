@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useModal } from "@/contexts/ModalContext";
 import { API_BASE } from "@/config/api";
 import styles from "./ProfileEdit.module.css";
@@ -11,6 +11,18 @@ export default function ProfileEdit({ user, onUpdate }) {
   const [isUploadingAvatar, setIsUploadingAvatar] = useState(false);
   const [avatarPreview, setAvatarPreview] = useState(user?.avatar_url ? `${API_BASE}${user.avatar_url}` : null);
   const fileInputRef = useRef(null);
+
+  // Обновляем preview аватара при изменении user
+  useEffect(() => {
+    if (user?.avatar_url) {
+      const avatarUrl = user.avatar_url.startsWith('http') 
+        ? user.avatar_url 
+        : `${API_BASE}${user.avatar_url}`;
+      setAvatarPreview(avatarUrl);
+    } else {
+      setAvatarPreview(null);
+    }
+  }, [user?.avatar_url]);
 
   const handleStatusUpdate = async () => {
     try {
