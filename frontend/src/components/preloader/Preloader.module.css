@@ -49,67 +49,23 @@
   height: 100%;
 }
 
-/* Сумка - главный элемент */
-.bag {
-  fill: var(--accent-color);
+/* Логотип изображение */
+.logoImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
   opacity: 0;
-  animation: bagAppear 0.6s ease-out 0.3s forwards;
+  animation: logoFadeIn 0.8s ease-out 0.3s forwards;
 }
 
-@keyframes bagAppear {
+@keyframes logoFadeIn {
   0% {
     opacity: 0;
-    transform: translateY(20px) scale(0.9);
+    transform: scale(0.8);
   }
   100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
-  }
-}
-
-/* Подарок */
-.gift {
-  fill: var(--accent-color);
-  opacity: 0;
-  animation: itemFloat 0.5s ease-out 0.9s forwards;
-}
-
-@keyframes itemFloat {
-  0% {
-    opacity: 0;
-    transform: translate(-10px, 10px) rotate(-15deg) scale(0.5);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(0, 0) rotate(0deg) scale(1);
-  }
-}
-
-/* Ценник */
-.tag {
-  fill: var(--accent-color);
-  opacity: 0;
-  animation: itemFloat 0.5s ease-out 1.1s forwards;
-}
-
-/* Звездочки */
-.star {
-  fill: var(--accent-color);
-  opacity: 0;
-  animation: starTwinkle 0.4s ease-out forwards;
-}
-
-@keyframes starTwinkle {
-  0% {
-    opacity: 0;
-    transform: scale(0) rotate(0deg);
-  }
-  50% {
-    transform: scale(1.3) rotate(180deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(360deg);
+    transform: scale(1);
   }
 }
 
