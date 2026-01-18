@@ -1,13 +1,11 @@
--- Проверка и добавление столбца status, если его нет
-ALTER TABLE users ADD COLUMN IF NOT EXISTS status VARCHAR(200) NULL AFTER avatar_url;
+-- Добавление столбца status (игнорирует ошибку, если столбец уже существует)
+-- Сначала проверяем структуру таблицы
+SELECT COLUMN_NAME 
+FROM INFORMATION_SCHEMA.COLUMNS 
+WHERE TABLE_SCHEMA = 'trado' 
+  AND TABLE_NAME = 'users' 
+  AND COLUMN_NAME = 'status';
 
--- Создание папки для аватарок (выполнить в терминале):
--- mkdir -p /var/www/trado/backend/uploads/avatars
--- chmod 755 /var/www/trado/backend/uploads
--- chmod 755 /var/www/trado/backend/uploads/avatars
-
--- Проверка структуры таблицы
-DESCRIBE users;
-
--- Проверка, что роут зарегистрирован (проверить в backend/index.js):
--- app.use('/api/profile', profileRoutes);
+-- Если столбец не существует, добавляем его
+-- Выполнить эту команду отдельно:
+-- ALTER TABLE users ADD COLUMN status VARCHAR(200) NULL AFTER avatar_url;
