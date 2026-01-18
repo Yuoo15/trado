@@ -21,6 +21,11 @@ export default function AdsManagementPage() {
   const [selectedBannerId, setSelectedBannerId] = useState(null);
   const [detailedAnalytics, setDetailedAnalytics] = useState(null);
   const [showAnalyticsModal, setShowAnalyticsModal] = useState(false);
+  const [editingBanner, setEditingBanner] = useState(null);
+  const [editBannerUrl, setEditBannerUrl] = useState("");
+  const [editDisplayOrder, setEditDisplayOrder] = useState(0);
+  const [editBannerImage, setEditBannerImage] = useState(null);
+  const [editBannerPreview, setEditBannerPreview] = useState(null);
 
   useEffect(() => {
     const checkAdmin = () => {
@@ -151,6 +156,69 @@ export default function AdsManagementPage() {
     } catch (error) {
       console.error("Ошибка добавления рекламы:", error);
       showError("Ошибка добавления рекламы");
+    }
+  };
+
+  const handleEditBanner = (banner) => {
+    setEditingBanner(banner);
+    setEditBannerUrl(banner.url || "");
+    setEditDisplayOrder(banner.display_order || 0);
+    setEditBannerImage(null);
+    setEditBannerPreview(null);
+  };
+
+  const handleEditBannerSubmit = async (e) => {
+    e.preventDefault();
+    if (!editingBanner || !editBannerUrl.trim()) {
+      showError("Заполните все поля");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("token");
+      const formData = new FormData();
+      if (editBannerImage) {
+        formData.append("image", editBannerImage);
+      }
+      formData.append("url", editBannerUrl.trim());
+      formData.append("display_order", editDisplayOrder.toString());
+
+      const res = await fetch(`${API_BASE}/api/banners/${editingBanner.id}`, {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: formData,
+      });
+
+      if (res.ok) {
+        await loadBanners();
+        await loadAnalytics();
+        setEditingBanner(null);
+        setEditBannerUrl("");
+        setEditDisplayOrder(0);
+        setEditBannerImage(null);
+        setEditBannerPreview(null);
+        showSuccess("Реклама успешно обновлена");
+      } else {
+        const error = await res.json();
+        showError(error.error || "Ошибка обновления рекламы");
+      }
+    } catch (error) {
+      console.error("Ошибка обновления рекламы:", error);
+      showError("Ошибка обновления рекламы");
+    }
+  };
+
+  const handleEditBannerImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setEditBannerImage(file);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setEditBannerPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
 
@@ -350,6 +418,13 @@ export default function AdsManagementPage() {
                   </div>
                   <div className={styles.bannerActions}>
                     <button
+                      className={styles.editButton}
+                      onClick={() => handleEditBanner(banner)}
+                      title="Редактировать"
+                    >
+                      ✏️
+                    </button>
+                    <button
                       className={styles.analyticsButton}
                       onClick={() => loadBannerAnalytics(banner.id)}
                       title="Просмотр аналитики"
@@ -367,6 +442,77 @@ export default function AdsManagementPage() {
                 </div>
               );
             })}
+          </div>
+        )}
+
+        {/* Модальное окно редактирования */}
+        {editingBanner && (
+          <div className={styles.modalOverlay} onClick={() => setEditingBanner(null)}>
+            <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+              <div className={styles.modalHeader}>
+                <h2 className={styles.modalTitle}>✏️ Редактировать рекламу</h2>
+                <button 
+                  className={styles.modalClose}
+                  onClick={() => setEditingBanner(null)}
+                >
+                  ✕
+                </button>
+              </div>
+              <form className={styles.modalBody} onSubmit={handleEditBannerSubmit}>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Изображение рекламы (оставьте пустым, чтобы не менять)</label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleEditBannerImageChange}
+                    className={styles.fileInput}
+                  />
+                  {editBannerPreview ? (
+                    <img src={editBannerPreview} alt="Preview" className={styles.previewImage} />
+                  ) : editingBanner.image_url ? (
+                    <img 
+                      src={editingBanner.image_url.startsWith("http") ? editingBanner.image_url : `${API_BASE}${editingBanner.image_url}`} 
+                      alt="Current" 
+                      className={styles.previewImage} 
+                    />
+                  ) : null}
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>URL ссылки</label>
+                  <input
+                    type="url"
+                    value={editBannerUrl}
+                    onChange={(e) => setEditBannerUrl(e.target.value)}
+                    placeholder="https://example.com или /page"
+                    className={styles.formInput}
+                    required
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label className={styles.formLabel}>Порядок отображения</label>
+                  <input
+                    type="number"
+                    value={editDisplayOrder}
+                    onChange={(e) => setEditDisplayOrder(parseInt(e.target.value) || 0)}
+                    placeholder="0"
+                    className={styles.formInput}
+                    min="0"
+                  />
+                </div>
+                <div style={{ display: 'flex', gap: '10px', marginTop: '20px' }}>
+                  <button type="submit" className={styles.submitButton}>
+                    Сохранить изменения
+                  </button>
+                  <button 
+                    type="button" 
+                    className={styles.cancelButton}
+                    onClick={() => setEditingBanner(null)}
+                  >
+                    Отмена
+                  </button>
+                </div>
+              </form>
+            </div>
           </div>
         )}
 

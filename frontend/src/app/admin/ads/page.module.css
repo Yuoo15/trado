@@ -268,6 +268,24 @@
   box-shadow: 0 6px 16px rgba(0, 76, 255, 0.4);
 }
 
+.cancelButton {
+  padding: 12px 24px;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  background: var(--bg-primary);
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex: 1;
+}
+
+.cancelButton:hover {
+  background: var(--bg-secondary);
+  border-color: var(--text-secondary);
+}
+
 .emptyState {
   text-align: center;
   padding: 40px 20px;
@@ -382,7 +400,8 @@
 }
 
 .analyticsButton,
-.deleteButton {
+.deleteButton,
+.editButton {
   padding: 10px 16px;
   border-radius: 10px;
   font-size: 18px;
@@ -394,6 +413,17 @@
   width: 44px;
   height: 44px;
   border: 2px solid;
+}
+
+.editButton {
+  border-color: #4CAF50;
+  background: var(--bg-primary);
+  color: #4CAF50;
+}
+
+.editButton:hover {
+  background: var(--bg-secondary);
+  transform: translateY(-1px);
 }
 
 .analyticsButton {

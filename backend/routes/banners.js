@@ -303,6 +303,62 @@ router.get('/analytics', authenticateToken, authorizeRole('admin'), async (req, 
   }
 });
 
+// PUT /api/banners/:id - обновить баннер (только админ)
+router.put('/:id', authenticateToken, authorizeRole('admin'), upload.single('image'), async (req, res) => {
+  try {
+    const bannerId = parseInt(req.params.id);
+    const { url, display_order } = req.body;
+
+    if (isNaN(bannerId)) {
+      return res.status(400).json({ error: 'Неверный ID баннера' });
+    }
+
+    if (!url) {
+      return res.status(400).json({ error: 'Поле url обязательно' });
+    }
+
+    // Проверяем существование баннера
+    const [banners] = await db.execute(
+      'SELECT image_url FROM banners WHERE id = ?',
+      [bannerId]
+    );
+
+    if (banners.length === 0) {
+      return res.status(404).json({ error: 'Баннер не найден' });
+    }
+
+    let imageUrl = banners[0].image_url;
+
+    // Если загружено новое изображение, удаляем старое и сохраняем новое
+    if (req.file) {
+      // Удаляем старое изображение
+      if (banners[0].image_url) {
+        const oldImagePath = path.join(__dirname, '..', banners[0].image_url);
+        if (fs.existsSync(oldImagePath)) {
+          fs.unlinkSync(oldImagePath);
+        }
+      }
+      imageUrl = `/uploads/banners/${req.file.filename}`;
+    }
+
+    // Обновляем баннер в БД
+    await db.execute(
+      'UPDATE banners SET url = ?, display_order = ?, image_url = ? WHERE id = ?',
+      [url, parseInt(display_order) || 0, imageUrl, bannerId]
+    );
+
+    res.json({
+      id: bannerId,
+      image_url: imageUrl,
+      url,
+      display_order: parseInt(display_order) || 0
+    });
+  } catch (error) {
+    console.error('Ошибка обновления баннера:', error);
+    res.status(500).json({ error: 'Внутренняя ошибка сервера' });
+  }
+});
+
 // DELETE /api/banners/:id - удалить баннер (только админ)
 router.delete('/:id', authenticateToken, authorizeRole('admin'), async (req, res) => {
   try {
