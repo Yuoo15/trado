@@ -524,7 +524,7 @@ router.get('/user/:id', async (req, res) => {
     }
 
     const [users] = await db.execute(
-      'SELECT id, name, last_name, phone, role, created_at, is_banned FROM users WHERE id = ?',
+      'SELECT id, name, last_name, phone, role, created_at, is_banned, status, avatar_url FROM users WHERE id = ?',
       [userId]
     );
 
@@ -540,7 +540,9 @@ router.get('/user/:id', async (req, res) => {
       phone: user.phone,
       role: user.role,
       created_at: user.created_at,
-      is_banned: user.is_banned || false
+      is_banned: user.is_banned || false,
+      status: user.status || null,
+      avatar_url: user.avatar_url || null
     });
   } catch (error) {
     console.error('Ошибка получения пользователя:', error);
