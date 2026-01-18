@@ -211,7 +211,20 @@ export default function SellerPage() {
         <div className={styles.sellerHeader}>
           <div className={styles.sellerHeaderTop}>
             <div className={styles.sellerAvatar}>
-              {seller.name?.charAt(0)?.toUpperCase() || '?'}
+              {seller.avatar_url ? (
+                <img 
+                  src={seller.avatar_url.startsWith('http') ? seller.avatar_url : `${API_BASE}${seller.avatar_url}`}
+                  alt={seller.name || 'Seller'}
+                  className={styles.sellerAvatarImage}
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    e.target.nextElementSibling.style.display = 'flex';
+                  }}
+                />
+              ) : null}
+              <div className={styles.sellerAvatarPlaceholder} style={{ display: seller.avatar_url ? 'none' : 'flex' }}>
+                {seller.name?.charAt(0)?.toUpperCase() || '?'}
+              </div>
             </div>
             <div className={styles.sellerInfo}>
               <h1 className={styles.sellerName}>{seller.name || 'Неизвестный продавец'}</h1>

@@ -641,7 +641,20 @@ export default function ProductDetailPage() {
                 onClick={() => router.push(`/seller/${seller.id}`)}
               >
                 <div className={styles.sellerAvatar}>
-                  {seller.name?.charAt(0)?.toUpperCase() || '?'}
+                  {seller.avatar_url ? (
+                    <img 
+                      src={seller.avatar_url.startsWith('http') ? seller.avatar_url : `${API_BASE}${seller.avatar_url}`}
+                      alt={seller.name || 'Seller'}
+                      className={styles.sellerAvatarImage}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextElementSibling.style.display = 'flex';
+                      }}
+                    />
+                  ) : null}
+                  <div className={styles.sellerAvatarPlaceholder} style={{ display: seller.avatar_url ? 'none' : 'flex' }}>
+                    {seller.name?.charAt(0)?.toUpperCase() || '?'}
+                  </div>
                 </div>
                 <div className={styles.sellerDetails}>
                   <div className={styles.sellerName}>{seller.name || 'Неизвестный продавец'}</div>
