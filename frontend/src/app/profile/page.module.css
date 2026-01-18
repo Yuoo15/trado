@@ -1,90 +1,69 @@
 .wrapper {
   min-height: 100vh;
-  padding: 20px;
-  padding-bottom: 120px;
-  background: radial-gradient(circle at 20% 20%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 40%),
-    radial-gradient(circle at 80% 0%, var(--bg-gradient-start) 0%, var(--bg-gradient-end) 35%),
-    var(--bg-primary);
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  overflow-x: hidden;
-  position: relative;
-  transition: background 0.3s ease;
+  padding: 0;
+  padding-bottom: 100px;
+  background: var(--bg-primary);
 }
 
 .container {
   max-width: 900px;
   margin: 0 auto;
-  background: transparent;
-  border-radius: 0;
-  box-shadow: none;
-  padding: 24px 20px;
-  border: none;
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
+  padding: 20px;
 }
 
 .loading {
   text-align: center;
-  padding: 40px;
+  padding: 60px 20px;
   color: var(--text-secondary);
+  font-size: 16px;
 }
 
 /* Шапка профиля */
 .profileHeader {
-  background: transparent;
-  border-radius: 0;
-  padding: 0;
   margin-bottom: 24px;
-  box-shadow: none;
 }
 
 .profileInfo {
-  margin-top: 16px;
-  padding-top: 16px;
+  margin-top: 20px;
+  padding-top: 20px;
   border-top: 1px solid var(--border-color);
 }
 
 .profileName {
-  font-size: 28px;
-  font-weight: 800;
+  font-size: 32px;
+  font-weight: 700;
   color: var(--text-primary);
-  margin: 0 0 16px 0;
+  margin: 0 0 20px 0;
+  line-height: 1.2;
 }
 
 .profileStats {
-  display: flex;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 12px;
 }
 
 .statItem {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 12px 24px;
+  padding: 16px;
   background: var(--bg-secondary);
-  border-radius: 8px;
   border: 1px solid var(--border-color);
-  transition: all 0.2s ease;
-}
-
-.statItem:hover {
-  border-color: var(--accent-color);
-  transform: translateY(-2px);
+  border-radius: 12px;
+  text-align: center;
 }
 
 .statValue {
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
   color: var(--accent-color);
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
 }
 
 .statLabel {
-  font-size: 14px;
+  font-size: 13px;
   color: var(--text-secondary);
-  margin-top: 4px;
+  font-weight: 500;
 }
 
 /* Вкладки */
@@ -94,14 +73,19 @@
   margin-bottom: 24px;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
-  padding-bottom: 4px;
+  scrollbar-width: none;
+  padding-bottom: 2px;
+}
+
+.tabs::-webkit-scrollbar {
+  display: none;
 }
 
 .tab {
-  padding: 12px 20px;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
+  padding: 10px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
   font-size: 15px;
   font-weight: 600;
   color: var(--text-secondary);
@@ -109,71 +93,81 @@
   transition: all 0.2s ease;
   white-space: nowrap;
   flex-shrink: 0;
+  position: relative;
+}
+
+.tab::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transform: scaleX(0);
+  transition: transform 0.2s ease;
 }
 
 .tab:hover {
-  background: var(--bg-primary);
-  border-color: var(--accent-color);
-  transform: translateY(-2px);
+  color: var(--text-primary);
 }
 
 .tab.active {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
-  color: #fff;
+  color: var(--accent-color);
+}
+
+.tab.active::after {
+  transform: scaleX(1);
 }
 
 /* Контент вкладок */
 .tabContent {
-  background: transparent;
-  border-radius: 0;
-  padding: 0;
-  min-height: 300px;
+  min-height: 200px;
 }
 
-/* Вкладка объявлений */
+/* Объявления */
 .adsTab {
 }
 
 .emptyState {
   text-align: center;
-  padding: 40px 20px;
+  padding: 60px 20px;
   color: var(--text-secondary);
 }
 
 .emptyState p {
-  margin-bottom: 20px;
+  margin-bottom: 24px;
   font-size: 16px;
+  color: var(--text-secondary);
 }
 
 .addButton {
   display: inline-block;
-  padding: 14px 28px;
-  background: var(--gradient-primary);
+  padding: 12px 24px;
+  background: var(--accent-color);
   color: #fff;
   border-radius: 8px;
   font-weight: 600;
   font-size: 15px;
   text-decoration: none;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 76, 255, 0.25);
 }
 
 .addButton:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 76, 255, 0.35);
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .adsList {
   display: grid;
-  gap: 16px;
+  gap: 12px;
 }
 
 .adItem {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 16px;
+  gap: 12px;
+  padding: 12px;
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
@@ -181,26 +175,26 @@
 }
 
 .adItem:hover {
-  transform: translateY(-2px);
   border-color: var(--accent-color);
-  box-shadow: 0 4px 12px rgba(0, 76, 255, 0.15);
 }
 
 .adLink {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   flex: 1;
   text-decoration: none;
   color: inherit;
+  min-width: 0;
 }
 
 .adImage {
-  width: 80px;
-  height: 80px;
+  width: 72px;
+  height: 72px;
   object-fit: cover;
-  border-radius: 8px;
+  border-radius: 6px;
   flex-shrink: 0;
+  background: var(--bg-tertiary);
 }
 
 .adInfo {
@@ -209,7 +203,7 @@
 }
 
 .adTitle {
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   color: var(--text-primary);
   margin-bottom: 4px;
@@ -219,36 +213,36 @@
 }
 
 .adPrice {
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   color: var(--accent-color);
 }
 
 .deleteBtn {
   padding: 8px 12px;
-  background: var(--bg-primary);
+  background: transparent;
   border: 1px solid var(--border-color);
-  border-radius: 8px;
-  font-size: 18px;
+  border-radius: 6px;
+  font-size: 16px;
   cursor: pointer;
   transition: all 0.2s ease;
   flex-shrink: 0;
+  color: var(--text-secondary);
 }
 
 .deleteBtn:hover {
   background: #ff4444;
   border-color: #ff4444;
   color: #fff;
-  transform: scale(1.05);
 }
 
-/* Вкладка отзывов */
+/* Отзывы */
 .reviewsTab {
 }
 
 .reviewsList {
   display: grid;
-  gap: 16px;
+  gap: 12px;
 }
 
 .reviewItem {
@@ -259,22 +253,26 @@
   text-decoration: none;
   color: inherit;
   transition: all 0.2s ease;
+  display: block;
 }
 
 .reviewItem:hover {
-  transform: translateY(-2px);
   border-color: var(--accent-color);
-  box-shadow: 0 4px 12px rgba(0, 76, 255, 0.15);
 }
 
 .reviewRating {
   display: flex;
-  gap: 4px;
+  gap: 2px;
   margin-bottom: 8px;
 }
 
 .star, .starFilled {
-  font-size: 16px;
+  font-size: 14px;
+  color: #FFB800;
+}
+
+.star {
+  opacity: 0.3;
 }
 
 .reviewComment {
@@ -289,7 +287,7 @@
   color: var(--text-tertiary);
 }
 
-/* Вкладка настроек */
+/* Настройки */
 .settingsTab {
   display: flex;
   flex-direction: column;
@@ -301,11 +299,6 @@
   background: var(--bg-secondary);
   border: 1px solid var(--border-color);
   border-radius: 8px;
-  transition: all 0.2s ease;
-}
-
-.settingItem:hover {
-  border-color: var(--accent-color);
 }
 
 .settingTitle {
@@ -318,25 +311,23 @@
 .settingDesc {
   font-size: 14px;
   color: var(--text-secondary);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .themeToggle {
-  padding: 12px 24px;
+  padding: 10px 20px;
   background: var(--accent-color);
   color: #fff;
   border: none;
-  border-radius: 8px;
-  font-size: 15px;
+  border-radius: 6px;
+  font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 2px 8px rgba(0, 76, 255, 0.2);
 }
 
 .themeToggle:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 76, 255, 0.3);
+  opacity: 0.9;
 }
 
 .passwordForm {
@@ -347,69 +338,62 @@
 }
 
 .input {
-  padding: 14px 16px;
+  padding: 12px 16px;
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 15px;
   background: var(--bg-primary);
   color: var(--text-primary);
   transition: all 0.2s ease;
-  outline: none;
+  font-family: inherit;
 }
 
 .input:focus {
+  outline: none;
   border-color: var(--accent-color);
-  background: var(--bg-secondary);
 }
 
 .saveButton {
-  padding: 14px;
-  background: var(--gradient-primary);
+  padding: 12px 24px;
+  background: var(--accent-color);
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(0, 76, 255, 0.25);
 }
 
 .saveButton:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(0, 76, 255, 0.35);
+  opacity: 0.9;
 }
 
 .saveButton:disabled {
   opacity: 0.6;
   cursor: not-allowed;
-  transform: none;
 }
 
 .logoutButton {
   width: 100%;
-  padding: 14px;
+  padding: 12px 24px;
   background: #ff4444;
   color: #fff;
   border: none;
-  border-radius: 8px;
+  border-radius: 6px;
   font-size: 15px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 4px 12px rgba(255, 68, 68, 0.25);
 }
 
 .logoutButton:hover {
   background: #ff2222;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(255, 68, 68, 0.35);
 }
 
 /* Админ панель */
 .adminTab {
-  display: flex;
-  flex-direction: column;
+  display: grid;
   gap: 12px;
 }
 
@@ -420,22 +404,22 @@
   border-radius: 8px;
   text-decoration: none;
   color: var(--text-primary);
-  font-size: 16px;
+  font-size: 15px;
   font-weight: 600;
   transition: all 0.2s ease;
   display: block;
 }
 
 .adminLink:hover {
-  transform: translateY(-2px);
   border-color: var(--accent-color);
-  box-shadow: 0 4px 12px rgba(0, 76, 255, 0.15);
 }
 
 /* Welcome для неавторизованных */
 .welcomeSection {
   text-align: center;
   padding: 60px 20px;
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .welcomeTitle {
@@ -446,7 +430,7 @@
 }
 
 .welcomeTagline {
-  font-size: 18px;
+  font-size: 16px;
   color: var(--text-secondary);
   margin-bottom: 32px;
   line-height: 1.6;
@@ -456,67 +440,62 @@
   display: flex;
   flex-direction: column;
   gap: 12px;
-  max-width: 300px;
-  margin: 0 auto;
 }
 
 .welcomeCtaButton {
-  padding: 14px;
-  background: var(--gradient-primary);
+  padding: 14px 24px;
+  background: var(--accent-color);
   color: #fff;
-  border-radius: 12px;
+  border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
+  font-size: 15px;
 }
 
 .welcomeCtaButton:hover {
-  transform: translateY(-2px);
+  opacity: 0.9;
 }
 
 .welcomeLoginLink {
-  padding: 14px;
-  background: var(--bg-secondary);
-  color: var(--text-primary);
-  border-radius: 12px;
+  padding: 14px 24px;
+  background: transparent;
+  color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+  border-radius: 8px;
   font-weight: 600;
   text-decoration: none;
-  transition: transform 0.2s ease;
+  transition: all 0.2s ease;
+  font-size: 15px;
 }
 
 .welcomeLoginLink:hover {
-  transform: translateY(-2px);
+  background: var(--accent-color);
+  color: #fff;
 }
 
 /* Адаптив */
 @media (max-width: 768px) {
-  .wrapper {
-    padding: 16px;
-    padding-bottom: 120px;
-  }
-
   .container {
     padding: 16px;
   }
 
   .profileName {
-    font-size: 24px;
+    font-size: 26px;
   }
 
   .profileStats {
-    gap: 12px;
-  }
-
-  .statItem {
-    padding: 10px 16px;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .statValue {
-    font-size: 20px;
+    font-size: 24px;
   }
 
   .tabs {
-    gap: 6px;
+    margin-left: -16px;
+    margin-right: -16px;
+    padding: 0 16px 2px 16px;
   }
 
   .tab {
@@ -525,48 +504,19 @@
   }
 
   .adItem {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .adLink {
-    width: 100%;
+    padding: 12px;
   }
 
   .adImage {
-    width: 100%;
-    height: 160px;
+    width: 60px;
+    height: 60px;
   }
 
-  .deleteBtn {
-    width: 100%;
-    margin-top: 8px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 900px;
-    padding: 40px;
+  .adTitle {
+    font-size: 14px;
   }
 
-  .adsList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-
-  .adItem {
-    flex-direction: column;
-  }
-
-  .adImage {
-    width: 100%;
-    height: 200px;
-  }
-
-  .deleteBtn {
-    width: 100%;
-    margin-top: 12px;
+  .adPrice {
+    font-size: 15px;
   }
 }
