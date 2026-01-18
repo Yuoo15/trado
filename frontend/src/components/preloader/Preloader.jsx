@@ -28,10 +28,29 @@ export default function Preloader() {
         {/* Логотип */}
         <div className={styles.logoContainer}>
           <svg viewBox="0 0 200 200" className={styles.logo}>
-            <circle cx="100" cy="100" r="70" className={styles.circle} />
-            <text x="100" y="130" textAnchor="middle" className={styles.logoText}>
-              T
-            </text>
+            {/* Внешняя рамка */}
+            <rect 
+              x="30" 
+              y="30" 
+              width="140" 
+              height="140" 
+              rx="20" 
+              className={styles.outerRect}
+            />
+            
+            {/* Внутренние элементы - стилизованная T */}
+            <g className={styles.logoElements}>
+              {/* Горизонтальная линия T */}
+              <rect x="60" y="70" width="80" height="12" rx="6" />
+              
+              {/* Вертикальная линия T */}
+              <rect x="94" y="70" width="12" height="60" rx="6" />
+              
+              {/* Декоративные точки */}
+              <circle cx="100" cy="145" r="4" />
+              <circle cx="85" cy="145" r="3" />
+              <circle cx="115" cy="145" r="3" />
+            </g>
           </svg>
         </div>
 
