@@ -401,6 +401,9 @@ export default function ProfilePage() {
               <Link href="/admin/ads" className={styles.adminLink}>
                 🎯 Управление рекламой
               </Link>
+              <Link href="/admin/welcome-modal" className={styles.adminLink}>
+                👋 Управление приветственным окном
+              </Link>
             </div>
           )}
         </div>
