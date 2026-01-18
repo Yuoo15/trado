@@ -49,62 +49,31 @@
   height: 100%;
 }
 
-.outerCircle {
+.handwrittenText {
+  font-size: 64px;
+  font-weight: 600;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  letter-spacing: 4px;
   fill: none;
   stroke: var(--accent-color);
-  stroke-width: 3;
+  stroke-width: 2.5;
   stroke-linecap: round;
-  stroke-dasharray: 408;
-  stroke-dashoffset: 408;
-  animation: drawCircle 1.2s ease-out forwards;
+  stroke-linejoin: round;
+  stroke-dasharray: 500;
+  stroke-dashoffset: 500;
+  animation: writeText 2.5s ease-in-out forwards, fillText 0.4s ease-out 2.5s forwards;
+  filter: drop-shadow(0 2px 4px rgba(0, 76, 255, 0.1));
 }
 
-@keyframes drawCircle {
+@keyframes writeText {
   to {
     stroke-dashoffset: 0;
   }
 }
 
-.logoIcon {
-  opacity: 0;
-  animation: iconFade 0.5s ease-out 1s forwards;
-}
-
-@keyframes iconFade {
+@keyframes fillText {
   to {
-    opacity: 1;
-  }
-}
-
-.iconLine {
-  stroke: var(--accent-color);
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-dasharray: 70;
-  stroke-dashoffset: 70;
-  animation: drawLine 0.8s ease-out 1s forwards;
-}
-
-@keyframes drawLine {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-.iconDot {
-  fill: var(--accent-color);
-  opacity: 0;
-  animation: dotAppear 0.3s ease-out 1.8s forwards;
-}
-
-@keyframes dotAppear {
-  from {
-    opacity: 0;
-    transform: scale(0);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
+    fill: var(--accent-color);
   }
 }
 
