@@ -36,7 +36,7 @@ export default function Preloader() {
 
         {/* Название */}
         <h1 className={styles.brandName}>TRADO</h1>
-        <p className={styles.tagline}>Маркетплейс Казахстана</p>
+        <p className={styles.tagline}>Услуги, товары, объявления</p>
 
         {/* Индикатор загрузки */}
         <div className={styles.loadingContainer}>
