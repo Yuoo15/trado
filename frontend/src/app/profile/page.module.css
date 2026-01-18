@@ -81,22 +81,60 @@
   transition: color 0.3s ease;
 }
 
-.profileSection {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  margin-bottom: 32px;
-  padding-bottom: 24px;
-  border-bottom: 2px solid var(--border-color);
+.profileCard {
+  background: var(--bg-secondary);
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
-@media (min-width: 1024px) {
-  .profileSection {
+.userDetails {
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+.userName {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 16px 0;
+}
+
+.userMeta {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.metaItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--bg-primary);
+  border-radius: 12px;
+}
+
+.metaIcon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.metaValue {
+  font-size: 16px;
+  color: var(--text-primary);
+  font-weight: 500;
+}
+
+@media (min-width: 768px) {
+  .userMeta {
     flex-direction: row;
-    align-items: flex-start;
-    gap: 32px;
-    padding-bottom: 32px;
+  }
+  
+  .metaItem {
+    flex: 1;
   }
 }
 

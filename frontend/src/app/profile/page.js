@@ -451,22 +451,21 @@ export default function ProfilePage() {
       <div className={styles.container}>
         <h1 className={styles.title}>Профиль</h1>
 
-        {/* Редактирование профиля */}
-        <ProfileEdit user={user} onUpdate={(updatedUser) => setUser(updatedUser)} />
-
-        <div className={styles.profileSection}>
-          <div className={styles.userInfo}>
+        {/* Профильная карточка */}
+        <div className={styles.profileCard}>
+          <ProfileEdit user={user} onUpdate={(updatedUser) => setUser(updatedUser)} />
+          
+          <div className={styles.userDetails}>
             <h2 className={styles.userName}>{displayName}</h2>
-            {user.status && (
-              <div className={styles.statusBadge}>{user.status}</div>
-            )}
-            <div className={styles.userDetail}>
-              <span className={styles.label}>Телефон:</span>
-              <span className={styles.value}>{displayPhone}</span>
-            </div>
-            <div className={styles.userDetail}>
-              <span className={styles.label}>Роль:</span>
-              <span className={styles.value}>{displayRole}</span>
+            <div className={styles.userMeta}>
+              <div className={styles.metaItem}>
+                <span className={styles.metaIcon}>📞</span>
+                <span className={styles.metaValue}>{displayPhone}</span>
+              </div>
+              <div className={styles.metaItem}>
+                <span className={styles.metaIcon}>👤</span>
+                <span className={styles.metaValue}>{displayRole}</span>
+              </div>
             </div>
           </div>
         </div>
