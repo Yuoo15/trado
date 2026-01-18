@@ -28,8 +28,8 @@
 
 /* Логотип */
 .logoContainer {
-  width: 500px;
-  height: 500px;
+  width: 350px;
+  height: 350px;
   animation: logoFade 0.6s ease-out;
 }
 
