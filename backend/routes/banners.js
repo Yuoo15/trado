@@ -7,7 +7,7 @@ const multer = require('multer');
 const { authenticateToken, authorizeRole } = require('../middleware/auth');
 
 // Хранилище для баннеров
-const uploadsDir = path.join(__dirname, '../public/uploads/banners');
+const uploadsDir = path.join(__dirname, '../uploads/banners');
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
@@ -30,7 +30,7 @@ const upload = multer({
 router.get('/', async (_req, res) => {
   try {
     const [rows] = await db.execute(
-      'SELECT id, image_url, url, display_order FROM banners ORDER BY display_order ASC, id ASC'
+      'SELECT id, image_url, url, display_order FROM banners WHERE is_active = 1 ORDER BY display_order ASC, id ASC'
     );
     
     const banners = rows.map(row => ({
@@ -326,7 +326,7 @@ router.delete('/:id', authenticateToken, authorizeRole('admin'), async (req, res
 
     // Удаляем файл изображения
     if (banner.image_url) {
-      const imagePath = path.join(__dirname, '../public', banner.image_url);
+      const imagePath = path.join(__dirname, '..', banner.image_url);
       if (fs.existsSync(imagePath)) {
         fs.unlinkSync(imagePath);
       }
