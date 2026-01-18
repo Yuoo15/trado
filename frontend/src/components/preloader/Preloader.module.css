@@ -113,34 +113,66 @@
 
 /* Адаптив */
 @media (max-width: 768px) {
+  .content {
+    gap: 12px;
+  }
+
+  .logoContainer {
+    width: 180px;
+    height: 180px;
+  }
+
+  .brandName {
+    font-size: 48px;
+    letter-spacing: 3px;
+    margin-top: -60px;
+  }
+
+  .tagline {
+    font-size: 16px;
+  }
+
+  .loadingContainer {
+    margin-top: 16px;
+  }
+
+  .loadingText {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .content {
+    gap: 8px;
+  }
+
   .logoContainer {
     width: 140px;
     height: 140px;
   }
 
   .brandName {
-    font-size: 42px;
-    letter-spacing: 3px;
-  }
-
-  .tagline {
-    font-size: 16px;
-  }
-}
-
-@media (max-width: 480px) {
-  .logoContainer {
-    width: 120px;
-    height: 120px;
-  }
-
-  .brandName {
     font-size: 36px;
     letter-spacing: 2px;
+    margin-top: -40px;
   }
 
   .tagline {
     font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+
+  .loadingContainer {
+    margin-top: 12px;
+  }
+
+  .loadingText {
+    font-size: 13px;
+  }
+
+  .loadingDots span {
+    width: 5px;
+    height: 5px;
   }
 }
 
