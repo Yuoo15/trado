@@ -162,7 +162,7 @@
     border-bottom: none;
     height: 80px;
     padding: 0 20px;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--nav-bg);
     backdrop-filter: blur(20px);
     overflow: visible;
   }

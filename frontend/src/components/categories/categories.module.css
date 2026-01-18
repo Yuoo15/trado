@@ -1,7 +1,7 @@
 .wrap{
     margin-top: 12px;
     padding-bottom: env(safe-area-inset-bottom, 0);
-    margin-bottom: calc(env(safe-area-inset-bottom, 0) + 16px);
+    margin-bottom: 8px;
     width: 100%;
     overflow: visible;
 }
